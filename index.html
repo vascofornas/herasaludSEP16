@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Comparte y Busca a los mejores especialistas médicos de tu localidad</title>
+	<meta name="description" content="Cardio is a free one page template made exclusively for Codrops by Luka Cvetinovic" />
+	<meta name="keywords" content="html template, css, free, one page, gym, fitness, web design" />
+	<meta name="author" content="Luka Cvetinovic for Codrops" />
+	<!-- Favicons (created with http://realfavicongenerator.net/)-->
+	<link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-touch-icon-60x60.png">
+	<link rel="icon" type="image/png" href="img/favicons/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="img/favicons/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="img/favicons/manifest.json">
+	<link rel="shortcut icon" href="img/favicons/favicon.ico">
+	<meta name="msapplication-TileColor" content="#00a8ff">
+	<meta name="msapplication-config" content="img/favicons/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
+	<!-- Normalize -->
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<!-- Owl -->
+	<link rel="stylesheet" type="text/css" href="css/owl.css">
+	<!-- Animate.css -->
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+	<!-- Elegant Icons -->
+	<link rel="stylesheet" type="text/css" href="fonts/eleganticons/et-icons.css">
+	<!-- Main style -->
+	<link rel="stylesheet" type="text/css" href="css/cardio.css">
+	
+	<!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
+
+<!-- Inline CSS based on choices in "Settings" tab -->
+<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+	
+ 
+ 
+
+ 
+<!-- Scripts -->
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/typewriter.js"></script>
+	<script src="js/jquery.onepagenav.js"></script>
+	<script src="js/main.js"></script>
+	
+   
+ 
+
+ 
+
+	
+	
+<!-- STAR RATING -->
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+<link href="css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+ 
+<!-- optionally if you need to use a theme, then include the theme file as mentioned below -->
+<link href="themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
+ 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+<script src="js/star-rating.js" type="text/javascript"></script>
+ 
+<!-- optionally if you need to use a theme, then include the theme file as mentioned below -->
+<script src="themes/krajee-svg/theme.js"></script>
+ 
+
+
+<!-- MAPA -->
+	<style>
+      #map {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+      }
+    </style>
+   
+<script>
+      function initMap() {
+        var mapDiv = document.getElementById('map');
+        var map = new google.maps.Map(mapDiv, {
+            center: {lat: 44.540, lng: -78.546},
+            zoom: 8
+        });
+      }
+    </script>
+    
+    <!-- AUTOCOMPLETE -->
+    
+    <style>
+.typeahead-devs, .tt-hint,.country,.allcountry  {
+ 	border: 2px solid #CCCCCC;
+    border-radius: 8px 8px 8px 8px;
+    font-size: 24px;
+    height: 45px;
+    line-height: 30px;
+    outline: medium none;
+    padding: 8px 12px;
+    width: 400px;
+}
+
+.tt-dropdown-menu {
+  width: 400px;
+  margin-top: 5px;
+  padding: 8px 12px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px 8px 8px 8px;
+  font-size: 18px;
+  color: #111;
+  background-color: #F1F1F1;
+}
+</style>
+<script>
+$(document).ready(function() {
+	
+	$('input.country').typeahead({
+	name: 'country',
+	remote : 'country.php?query=%QUERY'
+	});;
+	})
+</script>
+ <script type="text/javascript" src="http://code.jquery.com/jquery-3.0.0.min.js"></script>
+
+  <!-- load jquery ui css-->
+        <script type="text/javascript" src="js/typeahead.js"></script>
+    
+</head>
+
+<body>
+	<div class="preloader">
+		<img src="img/loader.gif" alt="Preloader image">
+	</div>
+	<nav class="navbar">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><img src="img/logo.png" data-active-url="img/logo-active.png" alt=""></a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li><a href="#intro">Portada</a></li>
+					<li><a href="#doctores">Doctores</a></li>
+					<li><a href="#hospitales">Hospitales</a></li>
+					<li><a href="#farmacias">Farmacias</a></li>
+					<li><a href="#laboratios">Laboratorios</a></li>
+					<li><a href="#aseguradoras">Aseguradoras</a></li>
+					
+					
+					<li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Iniciar Sesión</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	<header id="intro">
+		<div class="container">
+			<div class="table">
+				<div class="header-text">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<h3 class="light white">HeraSalud cuida tu salud y la de los tuyos.</h3>
+							<h1 class="white typed">Comparte y Busca a los mejores especialistas médicos de tu localidad.</h1>
+							<span class="typed-cursor">|</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section>
+		<div class="cut cut-top"></div>
+		<div class="container">
+			<div class="row intro-tables">
+				<div class="col-md-4">
+					<div class="intro-table intro-table-first">
+						<h5 class="white heading">Opina de un doctor</h5>
+						<div class="owl-carousel owl-schedule bottom">
+							<div class="item">
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white">Puntualidad</h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white">Atención</h5>
+									</div>
+								</div>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white">Instalaciones</h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white">Honorarios</h5>
+									</div>
+								</div>
+								
+							</div>
+							<div class="item">
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<h5 class="regular white">Lo recomendarias?</h5>
+									</div>
+									<div class="col-xs-6 text-right">
+										<h5 class="white">Y tus comentarios...</h5>
+									</div>
+								</div>
+								<div class="schedule-row row">
+									<a href="#" class="btn btn-white-fill expand">Opina ahora de un doctor</a>
+						
+								</div>
+								
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="intro-table intro-table-hover">
+						<h5 class="white heading hide-hover">Encuentra a tu doctor</h5>
+						<div class="bottom">
+							<h4 class="white heading small-heading no-margin regular">Por ciudad</h4>
+							<h4 class="white heading small-pt">Por especialidad médica</h4>
+							
+							<a href="#" class="btn btn-white-fill expand">Busca ahora a tu doctor</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="intro-table intro-table-third">
+						<h5 class="white heading">Opiniones de Usuarios</h5>
+						<div class="owl-testimonials bottom">
+							<div class="item">
+								<h4 class="white heading content">no puedo estar más contenta con el doctor!</h4>
+								<h5 class="white heading light author">Ana Cruz</h5>
+							</div>
+							<div class="item">
+								<h4 class="white heading content">todo el equipo médico me dió mucha seguridad!</h4>
+								<h5 class="white heading light author">Cristina Alcocer</h5>
+							</div>
+							<div class="item">
+								<h4 class="white heading content">ahora me encuentro mucho mejor, mil gracias!</h4>
+								<h5 class="white heading light author">Gael Robledo</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="doctores" class="section section-padded">
+		<div class="container">
+			<div class="row text-center title">
+				<h2>Doctores</h2>
+				<h4 class="light muted">Opina de un doctor. Tu opinión es importante para todos.</h4>
+				
+			</div>
+			<div class="row services">
+				
+				<!-- HTML Form (wrapped in a .bootstrap-iso div) -->
+<div class="bootstrap-iso">
+ <div class="container-fluid">
+  <div class="row">
+   <div class="col-md-12 col-sm-12 col-xs-12">
+    <form method="post">
+    <div class="form-group ">
+      <label class="control-label " for="nombre">
+       Buscar al doctor del que quieres opinar, es posible que alguien haya opinado anteriormente
+      </label>
+   
+    
+   
+     <div class="form-group ">
+      
+<input type="text" name="country" size="20" id="country" class="country" 
+placeholder="Busqueda de doctor">
+     </div>
+   
+   
+
+    
+     <hr>
+       <label class="control-label " for="nombre">
+       Si no encuentras al doctor, puedes escribir sus datos y opinar
+      </label>
+     <div class="form-group ">
+      <label class="control-label " for="nombre">
+       Nombre del Doctor
+      </label>
+      <input class="form-control" id="nombre" name="nombre" placeholder="Nombre del Doctor" type="text"/>
+     </div>
+     <div class="form-group ">
+      <label class="control-label " for="apellidos">
+       Apellidos del Doctor
+      </label>
+      <input class="form-control" id="apellidos" placeholder="Apellidos del Doctor" name="apellidos" type="text"/>
+     </div>
+     <div class="form-group ">
+      <label class="control-label " for="direccion">
+       Direccion del Doctor
+      </label>
+      <input class="form-control" id="direccion" placeholder="Dirección del Doctor" name="direccion" type="text"/>
+     </div>
+     <div class="form-group ">
+      <label class="control-label requiredField" for="email">
+       Email
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <input class="form-control" id="email" name="email" type="text"/>
+     </div>
+     <div class="form-group ">
+      <label class="control-label " for="subject">
+       Subject
+      </label>
+      <input class="form-control" id="subject" name="subject" type="text"/>
+     </div>
+     <div class="form-group ">
+      <label class="control-label " for="message">
+       Message
+      </label>
+      <textarea class="form-control" cols="40" id="message" name="message" rows="10"></textarea>
+     </div>
+       <div class="form-group ">
+      <label class="control-label " for="select">
+       Selecciona un pais
+      </label>
+      <select class="form-control countries" id="country" name="country">
+       
+      </select>
+     </div>
+          <div class="form-group ">
+      <label class="control-label " for="select">
+       Selecciona un estado o provincia
+      </label>
+      <select class="form-control states" id="state" name="state">
+      
+      </select>
+     </div>
+          <div class="form-group ">
+      <label class="control-label " for="select">
+       Selecciona una ciudad
+      </label>
+      <select class="form-control states" id="stateId" name="state">
+      <option value="">Selecciona una ciudad</option>
+      </select>
+     </div>
+     
+     
+      <div class="row">
+<div class="col-xs-6">
+<label for="input-5" class="control-label">Puntualidad</label>
+<input id="input-id" name="input-name" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
+</div>
+<div class="col-xs-6">
+<label for="input-6" class="control-label">Atención</label>
+<input id="input-id" name="input-name" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
+
+</div>
+</div>
+<br>
+ <div class="row">
+<div class="col-xs-6">
+<label for="input-7" class="control-label">Instalaciones</label>
+<input id="input-id" name="input-name" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
+
+</div>
+<div class="col-xs-6">
+<label for="input-8" class="control-label">Precio</label>
+<input id="input-id" name="input-name" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
+
+</div>
+</div>
+ <div class="row">
+<div class="col-xs-6">
+<label for="input-7" class="control-label">Lo recomendarías?</label>
+<input id="input-id" name="input-name" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
+
+</div>
+
+
+<div id="map"></div>
+
+</div>
+     <div class="form-group">
+      <div>
+       <button class="btn btn-primary " name="submit" type="submit">
+        Submit
+       </button>
+      </div>
+     </div>
+    </form>
+   </div>
+  </div>
+ </div>
+</div>
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		</div>
+		<div class="cut cut-bottom"></div>
+	</section>
+	
+		<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content modal-popup">
+				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+				<h3 class="white">Sign Up</h3>
+				<form action="" class="popup-form">
+					<input type="text" class="form-control form-white" placeholder="Full Name">
+					<input type="text" class="form-control form-white" placeholder="Email Address">
+					<input type="text" class="form-control form-white" placeholder="Full Name">
+					<input type="text" class="form-control form-white" placeholder="Email Address">
+					<input type="text" class="form-control form-white" placeholder="Full Name">
+					<input type="text" class="form-control form-white" placeholder="Email Address">
+					<input type="text" class="form-control form-white" placeholder="Full Name">
+					<input type="text" class="form-control form-white" placeholder="Email Address">
+					
+					<div class="dropdown">
+						<button id="dLabel" class="form-control form-white dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Pricing Plan
+						</button>
+						<ul class="dropdown-menu animated fadeIn" role="menu" aria-labelledby="dLabel">
+							<li class="animated lightSpeedIn"><a href="#">1 month membership ($150)</a></li>
+							<li class="animated lightSpeedIn"><a href="#">3 month membership ($350)</a></li>
+							<li class="animated lightSpeedIn"><a href="#">1 year membership ($1000)</a></li>
+							<li class="animated lightSpeedIn"><a href="#">Free trial class</a></li>
+						</ul>
+					</div>
+					<div class="checkbox-holder text-left">
+						<div class="checkbox">
+							<input type="checkbox" value="None" id="squaredOne" name="check" />
+							<label for="squaredOne"><span>I Agree to the <strong>Terms &amp; Conditions</strong></span></label>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-submit">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-center-mobile">
+					<h3 class="white">Registrate y te enviaremos todas las novedades</h3>
+					<h5 class="light regular light-white">Comparte y Busca a los mejores especialistas médicos de tu localidad.</h5>
+					<a href="#" class="btn btn-blue ripple trial-button">Iniciar Sesión</a>
+				</div>
+				<div class="col-sm-6 text-center-mobile">
+					<h3 class="white">Horario de Apertura <span class="open-blink"></span></h3>
+					<div class="row opening-hours">
+						<div class="col-sm-6 text-center-mobile">
+							<h5 class="light-white light">Lunes - Domingo</h5>
+							<h3 class="regular white">0:00 - 24:00</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row bottom-footer text-center-mobile">
+				<div class="col-sm-8">
+					<p>&copy; 2016 All Rights Reserved. Powered by <a href="http://www.webjuarez.com/">WebJuarez</a> exclusively for <a href="http://herasalud.com">HeraSalud</a></p>
+				</div>
+				<div class="col-sm-4 text-right text-center-mobile">
+					<ul class="social-footer">
+						<li><a href="http://www.facebook.com/pages/Codrops/159107397912"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="http://www.twitter.com/codrops"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="https://plus.google.com/101095823814290637419"><i class="fa fa-google-plus"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Holder for mobile navigation -->
+	<div class="mobile-nav">
+		<ul>
+		</ul>
+		<a href="#" class="close-link"><i class="arrow_up"></i></a>
+	</div>
+	
+	
+	<!-- PAISE, ESTADOS Y CIUDADES -->
+<script src="countries.js"></script>
+<script>
+	populateCountries("country", "state"); // first parameter is id of country drop-down and second parameter is id of state drop-down
+
+</script>
+<script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf5FW36X3eb1wWoqpJ0MaiPYmOVvyJ_Ro&callback=initMap">
+    </script>
+</body>
+
+</html>
