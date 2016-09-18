@@ -17,24 +17,43 @@ class location extends dbconfig {
    }
  
  // Fetch all countries list
-   public static function getCountries() {
-     try {
-       $query = "SELECT id, name FROM countries ORDER BY name ASC";
-       $result = dbconfig::run($query);
-       if(!$result) {
-         throw new exception("Country not found.");
-       }
-       $res = array();
-       while($resultSet = mysqli_fetch_assoc($result)) {
-        $res[$resultSet['id']] = $resultSet['name'];
-       }
-       $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Countries fetched successfully.", 'result'=>$res);
-     } catch (Exception $e) {
-       $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
-     } finally {
-        return $data;
-     }
-   }
+public static function getCountries() {
+        try {
+            $query  = "SELECT id, name FROM countries ORDER BY name ASC";
+            $result = dbconfig::run($query);
+
+            if(!$result) {
+                throw new exception("Country not found.");
+            }
+
+            $res        = array();
+
+            while($resultSet = mysqli_fetch_assoc($result)) {
+                $res[$resultSet['id']] = $resultSet['name'];
+            }
+
+            // SIMPLY SORT $res HERE:
+            // FIRST FLIP THE ARRAY SO THAT THE KEYS BECOME THE VALUES:
+            $res        = array_flip($res);
+
+            // NOW SORT WITH KEYS:
+            ksort($res);
+
+            // AGAIN; FLIP THE ARRAY BACK TO THE ORIGINAL FORM:
+            $res        = array_flip($res);
+
+            $data = array(
+                'status'    => 'success',
+                'tp'        => 1,
+                'msg'       => "Countries fetched successfully.",
+                'result'    => $res
+            );
+        } catch (Exception $e) {
+            $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+        } finally {
+            return $data;
+        }
+    }
 
   // Fetch all states list by country id
   public static function getStates($countryId) {

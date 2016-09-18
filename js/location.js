@@ -50,50 +50,114 @@ function locationInfo() {
         });
     };
 
+    this.getCities = function(id) {
+        $(".cities option:gt(0)").remove();
+        var url = rootUrl+'?type=getCities&stateId=' + id;
+        var method = "post";
+        var data = {};
+  	  $('.cities').find("option:eq(0)").html("Procesando..");
+  	  call.send(data, url, method, function(data) {
+  	    $('.cities').find("option:eq(0)").html("Selecciona una ciudad");
+  	    console.log(data);
+  	    if (data.tp == 1) {
+  	      var arr = [];
+  	      for (prop in data["result"]) {
+  	        arr.push({
+  	          [prop]: data["result"][prop]
+  	        })
+  	      }
+
+  	      arr.sort(function(a, b) {
+  	        return a[Object.keys(a)[0]].localeCompare(b[Object.keys(b)[0]])
+  	      });
+
+  	      $.each(arr, function(key, val) {
+  	        var option = $('<option />');
+  	        var prop = Object.keys(val)[0];
+  	        option.attr('value', prop).text(val[prop]);
+  	        $('.cities').append(option);
+  	      });
+  	      $(".cities").prop("disabled", false);
+  	    } else {
+  	      alert(data.msg);
+  	    }
+  	  });
+  	};
+    
+    
     this.getStates = function(id) {
         $(".states option:gt(0)").remove(); 
         $(".cities option:gt(0)").remove(); 
         var url = rootUrl+'?type=getStates&countryId=' + id;
         var method = "post";
         var data = {};
-        $('.states').find("option:eq(0)").html("Procesando..");
-        call.send(data, url, method, function(data) {
-            $('.states').find("option:eq(0)").html("Selecciona un estado o provincia");
-            if(data.tp == 1){
-                $.each(data['result'], function(key, val) {
-                    var option = $('<option />');
-                    option.attr('value', key).text(val);
-                    $('.states').append(option);
-                });
-                $(".states").prop("disabled",false);
-            }
-            else{
-                alert(data.msg);
-            }
-        }); 
-    };
+  	  $('.states').find("option:eq(0)").html("Procesando..");
+  	  call.send(data, url, method, function(data) {
+  	    $('.states').find("option:eq(0)").html("Selecciona un estado o provincia");
+  	    console.log(data);
+  	    if (data.tp == 1) {
+  	      var arr = [];
+  	      for (prop in data["result"]) {
+  	        arr.push({
+  	          [prop]: data["result"][prop]
+  	        })
+  	      }
+
+  	      arr.sort(function(a, b) {
+  	        return a[Object.keys(a)[0]].localeCompare(b[Object.keys(b)[0]])
+  	      });
+
+  	      $.each(arr, function(key, val) {
+  	        var option = $('<option />');
+  	        var prop = Object.keys(val)[0];
+  	        option.attr('value', prop).text(val[prop]);
+  	        $('.states').append(option);
+  	      });
+  	      $(".states").prop("disabled", false);
+  	    } else {
+  	      alert(data.msg);
+  	    }
+  	  });
+  	};
+
+    
+    
+    
+    
+    
 
     this.getCountries = function() {
-        var url = rootUrl+'?type=getCountries';
-        var method = "post";
-        var data = {};
-        $('.countries').find("option:eq(0)").html("Procesando..");
-        call.send(data, url, method, function(data) {
-            $('.countries').find("option:eq(0)").html("Selecciona un pais");
-            console.log(data);
-            if(data.tp == 1){
-                $.each(data['result'], function(key, val) {
-                    var option = $('<option />');
-                    option.attr('value', key).text(val);
-                    $('.countries').append(option);
-                });
-                $(".countries").prop("disabled",false);
-            }
-            else{
-                alert(data.msg);
-            }
-        }); 
-    };
+    	  var url = rootUrl + '?type=getCountries';
+    	  var method = "post";
+    	  var data = {};
+    	  $('.countries').find("option:eq(0)").html("Procesando..");
+    	  call.send(data, url, method, function(data) {
+    	    $('.countries').find("option:eq(0)").html("Selecciona un pais");
+    	    console.log(data);
+    	    if (data.tp == 1) {
+    	      var arr = [];
+    	      for (prop in data["result"]) {
+    	        arr.push({
+    	          [prop]: data["result"][prop]
+    	        })
+    	      }
+
+    	      arr.sort(function(a, b) {
+    	        return a[Object.keys(a)[0]].localeCompare(b[Object.keys(b)[0]])
+    	      });
+
+    	      $.each(arr, function(key, val) {
+    	        var option = $('<option />');
+    	        var prop = Object.keys(val)[0];
+    	        option.attr('value', prop).text(val[prop]);
+    	        $('.countries').append(option);
+    	      });
+    	      $(".countries").prop("disabled", false);
+    	    } else {
+    	      alert(data.msg);
+    	    }
+    	  });
+    	};
 
 }
 
