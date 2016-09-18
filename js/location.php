@@ -7,7 +7,7 @@
 * App Name: Php+ajax country state city dropdown
 * Description: A simple oops based php and ajax country state city dropdown list
 */
-require_once("dbconfig1.php");
+require_once("dbconfig.php");
 class location extends dbconfig {
    
    public static $data;
@@ -19,7 +19,7 @@ class location extends dbconfig {
  // Fetch all countries list
    public static function getCountries() {
      try {
-       $query = "SELECT id, name FROM countries ORDER BY name ASC";
+       $query = "SELECT id, name FROM countries";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("Country not found.");

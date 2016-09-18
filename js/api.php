@@ -11,7 +11,7 @@ error_reporting(0);
 ob_start();
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
-include_once("classes/location.php");
+include_once("location.php");
 
 $loc = new location();			
 

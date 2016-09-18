@@ -26,7 +26,6 @@
 
 function locationInfo() {
     var rootUrl = "api.php";
-   
     var call = new ajaxCall();
     this.getCities = function(id) {
         $(".cities option:gt(0)").remove();

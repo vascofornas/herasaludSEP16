@@ -138,7 +138,7 @@
           
           geocoder = new google.maps.Geocoder();
           
-          var e = document.getElementById("stateid");
+          var e = document.getElementById("stateId");
     	  var strUser = e.options[e.selectedIndex].text;
       
     	 
@@ -162,10 +162,10 @@
           geocoder = new google.maps.Geocoder();
           
           var e = document.getElementById("cityId");
-    	  var strUser = e.options[e.selectedIndex].text;
+          var es = document.getElementById("stateId");
+    	  var strUseres = es.options[es.selectedIndex].text;
       
-    	 
-          var country =  e.options[e.selectedIndex].text;
+          var country =  e.options[e.selectedIndex].text+", "+strUseres;
           var geocoder;
 
           geocoder.geocode( {'address' : country}, function(results, status) {
@@ -203,19 +203,11 @@
   background-color: #F1F1F1;
 }
 </style>
-<script>
-$(document).ready(function() {
-	
-	$('input.country').typeahead({
-	name: 'country',
-	remote : 'country.php?query=%QUERY'
-	});;
-	})
-</script>
+
  <script type="text/javascript" src="http://code.jquery.com/jquery-3.0.0.min.js"></script>
 
   <!-- load jquery ui css-->
-        <script type="text/javascript" src="js/typeahead.js"></script>
+       
     
 </head>
 
@@ -391,7 +383,7 @@ $(document).ready(function() {
       <label class="control-label " for="select">
        Selecciona un pais
       </label>
-      <select class="form-control countries" id="countryId" name="country" onchange="cambiar_pais_mapa()">
+      <select class="form-control countries" id="countryId" name="countryId" onchange="cambiar_pais_mapa()">
        
       </select>
      </div>
@@ -402,7 +394,7 @@ $(document).ready(function() {
       <label class="control-label " for="select">
        Selecciona un estado o provincia
       </label>
-      <select class="form-control states" id="stateid" name="state" onchange="cambiar_estado_mapa()">
+      <select class="form-control states" id="stateId" name="stateId" onchange="cambiar_estado_mapa()">
       
       </select>
      </div>
@@ -412,7 +404,7 @@ $(document).ready(function() {
       <label class="control-label " for="select">
        Selecciona una ciudad
       </label>
-      <select class="form-control cities" id="cityId" name="city" onchange="cambiar_ciudad_mapa()">
+      <select class="form-control cities" id="cityId" name="cityId" onchange="cambiar_ciudad_mapa()">
       
       </select>
      </div>
@@ -574,12 +566,7 @@ $(document).ready(function() {
 	</div>
 	
 	
-	<!-- PAISE, ESTADOS Y CIUDADES -->
-<script src="countries.js"></script>
-<script>
-	populateCountries("country", "state"); // first parameter is id of country drop-down and second parameter is id of state drop-down
 
-</script>
 <script 
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf5FW36X3eb1wWoqpJ0MaiPYmOVvyJ_Ro&callback=initMap">
     </script>
