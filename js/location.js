@@ -32,9 +32,9 @@ function locationInfo() {
         var url = rootUrl+'?type=getCities&stateId=' + id;
         var method = "post";
         var data = {};
-        $('.cities').find("option:eq(0)").html("Please wait..");
+        $('.cities').find("option:eq(0)").html("Procesando..");
         call.send(data, url, method, function(data) {
-            $('.cities').find("option:eq(0)").html("Select City");
+            $('.cities').find("option:eq(0)").html("Selecciona una ciudad");
             if(data.tp == 1){
                 $.each(data['result'], function(key, val) {
                     var option = $('<option />');
@@ -55,9 +55,9 @@ function locationInfo() {
         var url = rootUrl+'?type=getStates&countryId=' + id;
         var method = "post";
         var data = {};
-        $('.states').find("option:eq(0)").html("Please wait..");
+        $('.states').find("option:eq(0)").html("Procesando..");
         call.send(data, url, method, function(data) {
-            $('.states').find("option:eq(0)").html("Select State");
+            $('.states').find("option:eq(0)").html("Selecciona un estado o provincia");
             if(data.tp == 1){
                 $.each(data['result'], function(key, val) {
                     var option = $('<option />');
@@ -76,9 +76,9 @@ function locationInfo() {
         var url = rootUrl+'?type=getCountries';
         var method = "post";
         var data = {};
-        $('.countries').find("option:eq(0)").html("Please wait..");
+        $('.countries').find("option:eq(0)").html("Procesando..");
         call.send(data, url, method, function(data) {
-            $('.countries').find("option:eq(0)").html("Select Country");
+            $('.countries').find("option:eq(0)").html("Selecciona un pais");
             console.log(data);
             if(data.tp == 1){
                 $.each(data['result'], function(key, val) {

@@ -15,7 +15,10 @@ if (isset($_REQUEST['query'])) {
 	$array = array();
 	
 	while ($row = mysqli_fetch_assoc($sql)) {
-		$array[] = $row['nombre_doctor'];
+		$array[] = array (
+            'nombre' => $row['nombre_doctor'].', '.$row['apellido1_doctor'],
+            'ciudad' => $row['ciudad_doctor'],
+        );
 	}
 	
 	echo json_encode ($array); //Return the JSON Array

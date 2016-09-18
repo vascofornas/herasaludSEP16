@@ -91,11 +91,91 @@
         var mapDiv = document.getElementById('map');
         var map = new google.maps.Map(mapDiv, {
             center: {lat: 44.540, lng: -78.546},
-            zoom: 8
+            zoom: 2
+        });
+        
+        geocoder = new google.maps.Geocoder();
+        var country = "Mexico";
+        var geocoder;
+
+        geocoder.geocode( {'address' : country}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+            }
         });
       }
+      function cambiar_pais_mapa() {
+    	
+          var mapDiv = document.getElementById('map');
+          var map = new google.maps.Map(mapDiv, {
+              center: {lat: 44.540, lng: -78.546},
+              zoom: 4
+          });
+          
+          geocoder = new google.maps.Geocoder();
+          
+          var e = document.getElementById("countryId");
+    	  var strUser = e.options[e.selectedIndex].text;
+      
+    	 
+          var country =  e.options[e.selectedIndex].text;
+          var geocoder;
+
+          geocoder.geocode( {'address' : country}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                  map.setCenter(results[0].geometry.location);
+              }
+          });
+        }
+      
+      function cambiar_estado_mapa() {
+      	
+          var mapDiv = document.getElementById('map');
+          var map = new google.maps.Map(mapDiv, {
+              center: {lat: 44.540, lng: -78.546},
+              zoom: 10
+          });
+          
+          geocoder = new google.maps.Geocoder();
+          
+          var e = document.getElementById("stateid");
+    	  var strUser = e.options[e.selectedIndex].text;
+      
+    	 
+          var country =  e.options[e.selectedIndex].text;
+          var geocoder;
+
+          geocoder.geocode( {'address' : country}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                  map.setCenter(results[0].geometry.location);
+              }
+          });
+        }
+      function cambiar_ciudad_mapa() {
+        	
+          var mapDiv = document.getElementById('map');
+          var map = new google.maps.Map(mapDiv, {
+              center: {lat: 44.540, lng: -78.546},
+              zoom: 13
+          });
+          
+          geocoder = new google.maps.Geocoder();
+          
+          var e = document.getElementById("cityId");
+    	  var strUser = e.options[e.selectedIndex].text;
+      
+    	 
+          var country =  e.options[e.selectedIndex].text;
+          var geocoder;
+
+          geocoder.geocode( {'address' : country}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                  map.setCenter(results[0].geometry.location);
+              }
+          });
+        }
     </script>
-    
+
     <!-- AUTOCOMPLETE -->
     
     <style>
@@ -282,89 +362,75 @@ $(document).ready(function() {
   <div class="row">
    <div class="col-md-12 col-sm-12 col-xs-12">
     <form method="post">
-    <div class="form-group ">
-      <label class="control-label " for="nombre">
-       Buscar al doctor del que quieres opinar, es posible que alguien haya opinado anteriormente
-      </label>
-   
-    
-   
-     <div class="form-group ">
-      
-<input type="text" name="country" size="20" id="country" class="country" 
-placeholder="Busqueda de doctor">
-     </div>
-   
-   
-
-    
-     <hr>
-       <label class="control-label " for="nombre">
-       Si no encuentras al doctor, puedes escribir sus datos y opinar
-      </label>
+    <div class="row">
+   <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="form-group ">
       <label class="control-label " for="nombre">
        Nombre del Doctor
       </label>
       <input class="form-control" id="nombre" name="nombre" placeholder="Nombre del Doctor" type="text"/>
      </div>
+     </div>
+     <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="form-group ">
       <label class="control-label " for="apellidos">
        Apellidos del Doctor
       </label>
-      <input class="form-control" id="apellidos" placeholder="Apellidos del Doctor" name="apellidos" type="text"/>
+      <input class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos del Doctor" type="text"/>
      </div>
-     <div class="form-group ">
-      <label class="control-label " for="direccion">
+     </div>
+   
+     </div>
+    <label class="control-label " for="nombre">
        Direccion del Doctor
       </label>
-      <input class="form-control" id="direccion" placeholder="Dirección del Doctor" name="direccion" type="text"/>
-     </div>
-     <div class="form-group ">
-      <label class="control-label requiredField" for="email">
-       Email
-       <span class="asteriskField">
-        *
-       </span>
-      </label>
-      <input class="form-control" id="email" name="email" type="text"/>
-     </div>
-     <div class="form-group ">
-      <label class="control-label " for="subject">
-       Subject
-      </label>
-      <input class="form-control" id="subject" name="subject" type="text"/>
-     </div>
-     <div class="form-group ">
-      <label class="control-label " for="message">
-       Message
-      </label>
-      <textarea class="form-control" cols="40" id="message" name="message" rows="10"></textarea>
-     </div>
-       <div class="form-group ">
+    <div class="row">
+    
+    <div class="col-md-4 col-sm-4 col-xs-4">
+  <div class="form-group ">
       <label class="control-label " for="select">
        Selecciona un pais
       </label>
-      <select class="form-control countries" id="countryId" name="country">
+      <select class="form-control countries" id="countryId" name="country" onchange="cambiar_pais_mapa()">
        
       </select>
      </div>
+     </div>
+    
+<div class="col-md-4 col-sm-4 col-xs-4">
           <div class="form-group ">
       <label class="control-label " for="select">
        Selecciona un estado o provincia
       </label>
-      <select class="form-control states" id="stateid" name="state">
+      <select class="form-control states" id="stateid" name="state" onchange="cambiar_estado_mapa()">
       
       </select>
      </div>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-4">
           <div class="form-group ">
       <label class="control-label " for="select">
        Selecciona una ciudad
       </label>
-      <select class="form-control cities" id="cityId" name="city">
-      <option value="">Selecciona una ciudad</option>
+      <select class="form-control cities" id="cityId" name="city" onchange="cambiar_ciudad_mapa()">
+      
       </select>
      </div>
+     </div>
+</div>
+<br><hr>
+<div id="map"></div>
+
+</div>
+
+     
+     <div class="form-group ">
+      <label class="control-label " for="message">
+       Tu opinión
+      </label>
+      <textarea class="form-control" cols="40" id="opinion" name="opinion" rows="10"></textarea>
+     </div>
+     
      
      
       <div class="row">
@@ -399,9 +465,8 @@ placeholder="Busqueda de doctor">
 </div>
 
 
-<div id="map"></div>
+<br><hr>
 
-</div>
      <div class="form-group">
       <div>
        <button class="btn btn-primary " name="submit" type="submit">
