@@ -280,7 +280,16 @@
   color: #111;
   background-color: #F1F1F1;
 }
-</style>
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+    </style>
 
 
   <!-- load jquery ui css-->
@@ -339,17 +348,15 @@ $(document).ready(function() {
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right main-nav">
-					<H3><li><a href="#intro">Portada</a></li></H3>
-					<H3><li><a href="#doctores">Opinar</a></li></H3>
-					<h3><li><a href="#buscar">Buscar</a></li></h3>
-					<li><a href="#buscar"></a></li>
-					<li><a href="#buscar"></a></li>
-					<li><a href="#buscar"></a></li>
-					<li><a href="#buscar"></a></li>
+				<ul class="nav navbar-nav navbar-center main-nav ">
+					<li ><span class="menu_items"><span class="menu_items"><a href="#intro">Portada</a></span></span></li>
+					<li><span class="menu_items"><span class="menu_items"><a href="#doctores">Opinar</a></span></span></li>
+					<li><span class="menu_items"><span class="menu_items"><a href="#buscar">Buscar</a></span></span></li>
 					
 					
-					<li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Iniciar Sesión</a></li>
+					
+					
+				  
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -371,85 +378,7 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</header>
-	<section>
-		<div class="cut cut-top"></div>
-		<div class="container">
-			<div class="row intro-tables">
-				<div class="col-md-4">
-					<div class="intro-table intro-table-first">
-						<h5 class="white heading">Opina de un doctor</h5>
-						<div class="owl-carousel owl-schedule bottom">
-							<div class="item">
-								<div class="schedule-row row">
-									<div class="col-xs-6">
-										<h5 class="regular white">Puntualidad</h5>
-									</div>
-									<div class="col-xs-6 text-right">
-										<h5 class="white">Atención</h5>
-									</div>
-								</div>
-								<div class="schedule-row row">
-									<div class="col-xs-6">
-										<h5 class="regular white">Instalaciones</h5>
-									</div>
-									<div class="col-xs-6 text-right">
-										<h5 class="white">Honorarios</h5>
-									</div>
-								</div>
-								
-							</div>
-							<div class="item">
-								<div class="schedule-row row">
-									<div class="col-xs-6">
-										<h5 class="regular white">Lo recomendarias?</h5>
-									</div>
-									<div class="col-xs-6 text-right">
-										<h5 class="white">Y tus comentarios...</h5>
-									</div>
-								</div>
-								<div class="schedule-row row">
-									<a href="#doctores" class="btn btn-white-fill expand">Opina ahora de un doctor</a>
-						
-								</div>
-								
-							</div>
-							
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="intro-table intro-table-hover">
-						<h5 class="white heading hide-hover">Encuentra a tu doctor</h5>
-						<div class="bottom">
-							<h4 class="white heading small-heading no-margin regular">Por ciudad</h4>
-							<h4 class="white heading small-pt">Por especialidad médica</h4>
-							
-							<a href="#" class="btn btn-white-fill expand">Busca ahora a tu doctor</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="intro-table intro-table-third">
-						<h5 class="white heading">Opiniones de Usuarios</h5>
-						<div class="owl-testimonials bottom">
-							<div class="item">
-								<h4 class="white heading content">no puedo estar más contenta con el doctor!</h4>
-								<h5 class="white heading light author">Ana Cruz</h5>
-							</div>
-							<div class="item">
-								<h4 class="white heading content">todo el equipo médico me dió mucha seguridad!</h4>
-								<h5 class="white heading light author">Cristina Alcocer</h5>
-							</div>
-							<div class="item">
-								<h4 class="white heading content">ahora me encuentro mucho mejor, mil gracias!</h4>
-								<h5 class="white heading light author">Gael Robledo</h5>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+	
 	<section id="doctores" class="section section-padded">
 		<div class="container">
 		
