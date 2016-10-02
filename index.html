@@ -52,6 +52,10 @@
 	<script src="js/typewriter.js"></script>
 	<script src="js/jquery.onepagenav.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/validator.js"></script>
+	
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	
    <script src="js/location.js"></script>   
    
@@ -87,6 +91,19 @@
     </style>
    
 <script>
+
+	function cargarEspecialidades(){
+		
+		var select = document.getElementById("listaEspecialidades");
+		var options = ["Alergología", "Anatomía Patológica", "Anestesiología", "Angiología", "Antropología Médica"];
+		for(var i = 0; i < options.length; i++) {
+		    var opt = options[i];
+		    var el = document.createElement("option");
+		    el.textContent = opt;
+		    el.value = opt;
+		    select.appendChild(el);
+		}
+	}
       function initMap() {
         var mapDiv = document.getElementById('map');
         var map = new google.maps.Map(mapDiv, {
@@ -102,6 +119,21 @@
             if (status == google.maps.GeocoderStatus.OK) {
                 map.setCenter(results[0].geometry.location);
             }
+        });
+        var geocoder = new google.maps.Geocoder();
+
+        google.maps.event.addListener(map, 'click', function(event) {
+        
+          geocoder.geocode({
+            'latLng': event.latLng
+          }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              if (results[0]) {
+                var direccion = (results[0].formatted_address);
+                document.getElementById("direccion_doctor").value = direccion;
+              }
+            }
+          });
         });
       }
       function cambiar_pais_mapa() {
@@ -125,6 +157,21 @@
               if (status == google.maps.GeocoderStatus.OK) {
                   map.setCenter(results[0].geometry.location);
               }
+          });
+          var geocoder = new google.maps.Geocoder();
+
+          google.maps.event.addListener(map, 'click', function(event) {
+          	
+            geocoder.geocode({
+              'latLng': event.latLng
+            }, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                	var direccion = (results[0].formatted_address);
+                    document.getElementById("direccion_doctor").value = direccion;
+                }
+              }
+            });
           });
         }
       
@@ -150,6 +197,21 @@
                   map.setCenter(results[0].geometry.location);
               }
           });
+          var geocoder = new google.maps.Geocoder();
+
+          google.maps.event.addListener(map, 'click', function(event) {
+         
+            geocoder.geocode({
+              'latLng': event.latLng
+            }, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                	var direccion = (results[0].formatted_address);
+                    document.getElementById("direccion_doctor").value = direccion;
+                }
+              }
+            });
+          });
         }
       function cambiar_ciudad_mapa() {
         	
@@ -173,8 +235,24 @@
                   map.setCenter(results[0].geometry.location);
               }
           });
+          var geocoder = new google.maps.Geocoder();
+
+          google.maps.event.addListener(map, 'click', function(event) {
+          	
+            geocoder.geocode({
+              'latLng': event.latLng
+            }, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                	var direccion = (results[0].formatted_address);
+                    document.getElementById("direccion_doctor").value = direccion;
+                }
+              }
+            });
+          });
         }
     </script>
+    
 
     <!-- AUTOCOMPLETE -->
     
@@ -204,14 +282,46 @@
 }
 </style>
 
- <script type="text/javascript" src="http://code.jquery.com/jquery-3.0.0.min.js"></script>
 
   <!-- load jquery ui css-->
-       
-    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>       
+<script type="text/javascript">
+$(document).ready(function() {	
+	
+	// submit form using $.ajax() method
+	
+	
+	$('#reg-form').submit(function(e){
+	
+		
+		e.preventDefault(); // Prevent Default Submission
+		var e = document.getElementById("listaEspecialidades");
+		var esp =  e.options[e.selectedIndex].text;
+		
+		
+		$.ajax({
+			url: 'nuevo_doctor.php',
+			type: 'POST',
+			data: $(this).serialize() // it will serialize the form data
+		})
+		.done(function(data){
+			$('#form-content').fadeOut('slow', function(){
+				$('#form-content').fadeIn('slow').html(data);
+			});
+			
+		})
+		.fail(function(){
+			alert('Ajax Submit Failed ...');	
+		});
+	});
+	
+	
+});
+</script>
+
 </head>
 
-<body>
+<body onload="cargarEspecialidades()">
 	<div class="preloader">
 		<img src="img/loader.gif" alt="Preloader image">
 	</div>
@@ -230,12 +340,13 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right main-nav">
-					<li><a href="#intro">Portada</a></li>
-					<li><a href="#doctores">Doctores</a></li>
-					<li><a href="#hospitales">Hospitales</a></li>
-					<li><a href="#farmacias">Farmacias</a></li>
-					<li><a href="#laboratios">Laboratorios</a></li>
-					<li><a href="#aseguradoras">Aseguradoras</a></li>
+					<H3><li><a href="#intro">Portada</a></li></H3>
+					<H3><li><a href="#doctores">Opinar</a></li></H3>
+					<h3><li><a href="#buscar">Buscar</a></li></h3>
+					<li><a href="#buscar"></a></li>
+					<li><a href="#buscar"></a></li>
+					<li><a href="#buscar"></a></li>
+					<li><a href="#buscar"></a></li>
 					
 					
 					<li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Iniciar Sesión</a></li>
@@ -251,8 +362,8 @@
 				<div class="header-text">
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<h3 class="light white">HeraSalud cuida tu salud y la de los tuyos.</h3>
-							<h1 class="white typed">Comparte y Busca a los mejores especialistas médicos de tu localidad.</h1>
+							<h1 class="light white">Opina sobre especialistas médicos.</h1>
+							<h1 class="white typed">Busca a los doctores más recomendados de tu localidad o país.</h1>
 							<span class="typed-cursor">|</span>
 						</div>
 					</div>
@@ -297,7 +408,7 @@
 									</div>
 								</div>
 								<div class="schedule-row row">
-									<a href="#" class="btn btn-white-fill expand">Opina ahora de un doctor</a>
+									<a href="#doctores" class="btn btn-white-fill expand">Opina ahora de un doctor</a>
 						
 								</div>
 								
@@ -341,6 +452,9 @@
 	</section>
 	<section id="doctores" class="section section-padded">
 		<div class="container">
+		
+		
+		<div id="form-contenido">
 			<div class="row text-center title">
 				<h2>Doctores</h2>
 				<h4 class="light muted">Opina de un doctor. Tu opinión es importante para todos.</h4>
@@ -353,27 +467,38 @@
  <div class="container-fluid">
   <div class="row">
    <div class="col-md-12 col-sm-12 col-xs-12">
-    <form method="post">
+  
+    <form method="post" id="reg-form" name="form1"  >
+    
     <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-4">
+  <div class="form-group ">
+      <label class="control-label " for="select">
+       Selecciona la especialidad del doctor<span>*</span>
+      </label>
+     <select class="form-control" id="listaEspecialidades" name="listaEspecialidades" required ><option></option></select>  
+      
+     </div>
+     </div>
    <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="form-group ">
-      <label class="control-label " for="nombre">
+      <label class="control-label " for="nombre_doctor" >
        Nombre del Doctor
-      </label>
-      <input class="form-control" id="nombre" name="nombre" placeholder="Nombre del Doctor" type="text"/>
+      <span>*</span></label>
+      <input class="form-control" id="nombre_doctor" name="nombre_doctor" placeholder="Nombre del Doctor" type="text" required>
      </div>
      </div>
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="form-group ">
-      <label class="control-label " for="apellidos">
+      <label class="control-label " for="apellidos_doctor">
        Apellidos del Doctor
-      </label>
-      <input class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos del Doctor" type="text"/>
+      <span>*</span></label>
+      <input class="form-control" id="apellidos_doctor" name="apellidos_doctor" placeholder="Apellidos del Doctor" type="text" required>
      </div>
      </div>
    
      </div>
-    <label class="control-label " for="nombre">
+    <label class="control-label " for="direccion_doctor">
        Direccion del Doctor
       </label>
     <div class="row">
@@ -409,18 +534,27 @@
       </select>
      </div>
      </div>
-</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+     <div class="form-group ">
+      <label class="control-label " for="apellidos">
+       Dirección completa del Doctor (escribela a continuacion o pincha sobre el mapa)<br>
+       <span>Ejemplo: Rancho Aguacaliente 1711, Pradera Dorada, 32618 Cd Juárez, Chih., México</span>
+      <span>*</span></label>
+      <input class="form-control" id="direccion_doctor" name="direccion_doctor" placeholder="Dirección completa del doctor" type="text" required>
+     </div>
+     </div>
 <br><hr>
 <div id="map"></div>
 
 </div>
 
-     
+     <br><hr>
      <div class="form-group ">
       <label class="control-label " for="message">
        Tu opinión
-      </label>
-      <textarea class="form-control" cols="40" id="opinion" name="opinion" rows="10"></textarea>
+      <span>*</span></label>
+      <textarea class="form-control" cols="40" id="opinion" name="opinion" rows="10" required></textarea>
      </div>
      
      
@@ -428,11 +562,11 @@
       <div class="row">
 <div class="col-xs-6">
 <label for="input-5" class="control-label">Puntualidad</label>
-<input id="input-id" name="input-name" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
+<input id="puntualidad" name="puntualidad" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
 </div>
 <div class="col-xs-6">
 <label for="input-6" class="control-label">Atención</label>
-<input id="input-id" name="input-name" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
+<input id="atencion" name="atencion" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
 
 </div>
 </div>
@@ -440,33 +574,80 @@
  <div class="row">
 <div class="col-xs-6">
 <label for="input-7" class="control-label">Instalaciones</label>
-<input id="input-id" name="input-name" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
+<input id="instalaciones" name="instalaciones" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
 
 </div>
 <div class="col-xs-6">
 <label for="input-8" class="control-label">Precio</label>
-<input id="input-id" name="input-name" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
+<input id="precio" name="precio" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
 
 </div>
 </div>
  <div class="row">
 <div class="col-xs-6">
 <label for="input-7" class="control-label">Lo recomendarías?</label>
-<input id="input-id" name="input-name" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
+<input id="recomendarias" name="recomendarias" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
 
 </div>
-
+</div>
+  <br><hr>
+   <div class="row">
+     <label class="control-label " for="nombre">
+       Tus datos
+      </label>
+      </div>
+<div class="col-md-6 col-sm-6 col-xs-6">
+     <div class="form-group ">
+      <label class="control-label " for="nombre_usuario">
+       Tu nombre
+      <span>*</span></label>
+      <input class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="Tu nombre" type="text" required>
+     </div>
+     </div>
+<div class="col-md-6 col-sm-6 col-xs-6">
+     <div class="form-group ">
+      <label class="control-label " for="email_usuario">
+       Tu email
+      <span>*</span></label>
+      <input class="form-control" id="email_usuario" name="email_usuario" placeholder="Tu email" type="email" required>
+     </div>
+     </div>
 
 <br><hr>
 
      <div class="form-group">
       <div>
-       <button class="btn btn-primary " name="submit" type="submit">
-        Submit
+       <button class="btn btn-primary form-control" type="submit">
+        Enviar
        </button>
       </div>
      </div>
     </form>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+				</div>
+		
+				
+			 <div id="form-content"></div>	
+		
+			</div>
+		
+		<div class="cut cut-bottom"></div>
+	</section>
+	<section id="buscar" class="section section-padded">
+		<div class="container">
+			<div class="row text-center title">
+				<h2>Buscar un Doctor</h2>
+				<h4 class="light muted">Busca a los mejores especialistas médicos de tu localidad.</h4>
+				
+			</div>
+			<div class="row services">
+
+
+
    </div>
   </div>
  </div>
@@ -520,7 +701,7 @@
 							<label for="squaredOne"><span>I Agree to the <strong>Terms &amp; Conditions</strong></span></label>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-submit">Submit</button>
+					<button type="submit" class="btn btn-submit">Enviar </button>
 				</form>
 			</div>
 		</div>
