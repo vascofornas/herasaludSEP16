@@ -68,15 +68,27 @@ $sql4= "SELECT name FROM cities WHERE id = '".$ciudad_doctor."'";
 $stmt4 = $link->query($sql4);
 $row = $stmt4->fetch(PDO::FETCH_ASSOC);
 $nombre_ciudad = $row['name'];
+$verificado = 0;
 
+function generateRandomString($length) {
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$charactersLength = strlen($characters);
+	$randomString = '';
+	for ($i = 0; $i < $length; $i++) {
+		$randomString .= $characters[rand(0, $charactersLength - 1)];
+	}
+	return $randomString;
+}
+
+$codigo = generateRandomString(10); 
 
 
 
 $statement = $link->prepare("INSERT INTO tb_opiniones_doctor(especialidad_doctor,nombre_doctor,apellidos_doctor,
 		direccion_doctor,pais_doctor,estado_doctor,ciudad_doctor,comentarios,puntualidad,atencion,instalaciones,precio,lo_recomiendas,
-		nombre_usuario,email_usuario,ip_usuario)
+		nombre_usuario,email_usuario,ip_usuario,verificado,codigo_verificacion)
     VALUES(:fesp,:fnombre,:fapellidos,:fdireccion,:fpais,:festado,:fciudad,:fcomentarios,:fpuntualidad,:fatencion,:finstalaciones,:fprecio,:flo_recomiendas,
-		:fusuario,:femail,:fip)");
+		:fusuario,:femail,:fip,:fverificado,:fcodigo)");
 $statement->execute(array(
     "fesp" => $especialidad_doctor,
     "fnombre" => $nombre_doctor,
@@ -93,9 +105,44 @@ $statement->execute(array(
 		"flo_recomiendas" => $recomendarias_doctor,
 		"fusuario" => $nombre_usuario,
 		"femail" => $email_usuario,
-		"fip" => $ipaddress
+		"fip" => $ipaddress,
+		"fverificado" => $verificado,
+		"fcodigo" => $codigo	
 		
 ));
+
+
+$to = $email_usuario;
+$subject = 'Tu opinión ha sido registrada';
+$from = 'admin@herasalud.com';
+
+// To send HTML mail, the Content-type header must be set
+$headers  = 'MIME-Version: 1.0' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+// Create email headers
+$headers .= 'From: '.$from."\r\n".
+		'Reply-To: '.$from."\r\n" .
+		'X-Mailer: PHP/' . phpversion();
+
+// Compose a simple HTML email message
+$message = '<html><body>';
+$message .= '<h1 style="color:#f40;">Hola '.$nombre_usuario.'!</h1>';
+$message .= '<p style="color:#080;font-size:18px;">Gracias por opinar en herasalud.com</p>';
+$message .= '<p>Una vez validada tu dirección email, procederemos a publicar tu opinión en herasalud.com</p><br>';
+
+$message .= '<p>Para validar tu dirección email, favor de hacer click en el botón</p><br>';
+$message .= '<a href="http://herasalud.com/confirmar_email.php?cod='.$codigo.'"><button type="button">VALIDAR EMAIL</button></a>';
+$message .= '<a href="herasalud.com"><img src="img/herasaludlogo.png" ></a>';
+$message .= '</body></html>';
+
+// Sending email
+if(mail($to, $subject, $message, $headers)){
+	echo 'Te hemos enviado un email para verificar tu dirección email.';
+} else{
+	echo 'Unable to send email. Please try again.';
+}
+
 
 
    
@@ -106,7 +153,7 @@ $statement->execute(array(
     <tr>
     <td colspan="2">
     	<div class="alert alert-info">
-    		<strong>OPINION REGISTRADA</strong>, Gracias por dar tu opinión
+    		<strong>OPINION REGISTRADA</strong>, Gracias por dar tu opinión. En menos de 48 horas validaremos tu email y publicaremos tu opinión.
     	</div>
     </td>
     </tr>

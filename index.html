@@ -288,6 +288,10 @@
 .navbar .navbar-collapse {
     text-align: center;
 }
+.opinar_div {
+background: url(../img/fondo_form.png) ;
+background-size:100% auto;
+}
 
     </style>
 
@@ -344,7 +348,7 @@ $(document).ready(function() {
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><img src="img/logo.png" data-active-url="img/logo-active.png" alt=""></a>
+				<a class="navbar-brand" href="#"><img src="img/herasaludlogo.png" data-active-url="img/herasaludlogo.png" alt=""></a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -352,6 +356,8 @@ $(document).ready(function() {
 					<li ><span class="menu_items"><span class="menu_items"><a href="#intro">Portada</a></span></span></li>
 					<li><span class="menu_items"><span class="menu_items"><a href="#doctores">Opinar</a></span></span></li>
 					<li><span class="menu_items"><span class="menu_items"><a href="#buscar">Buscar</a></span></span></li>
+					
+					<li><span class="menu_items"><span class="menu_items"><a href="#ver">Ver Opiniones</a></span></span></li>
 					
 					
 					
@@ -369,6 +375,7 @@ $(document).ready(function() {
 				<div class="header-text">
 					<div class="row">
 						<div class="col-md-12 text-center">
+						<img src="img/herasaludlogo.png" data-active-url="img/herasaludlogo.png" alt="">
 							<h1 class="light white">Opina sobre especialistas médicos.</h1>
 							<h1 class="white typed">Busca a los doctores más recomendados de tu localidad o país.</h1>
 							<span class="typed-cursor">|</span>
@@ -380,10 +387,11 @@ $(document).ready(function() {
 	</header>
 	
 	<section id="doctores" class="section section-padded">
-		<div class="container">
+		<div class="container" >
 		
 		
-		<div id="form-contenido">
+		
+		<div id="form-contenido" >
 			<div class="row text-center title">
 				<h2>Doctores</h2>
 				<h4 class="light muted">Opina de un doctor. Tu opinión es importante para todos.</h4>
@@ -393,16 +401,18 @@ $(document).ready(function() {
 				
 				<!-- HTML Form (wrapped in a .bootstrap-iso div) -->
 <div class="bootstrap-iso">
- <div class="container-fluid">
-  <div class="row">
-   <div class="col-md-12 col-sm-12 col-xs-12">
+ <div class="container-fluid" style="
+  
+   background-color:#1f273e;">
+  <div class="row" >
+   <div class="col-md-12 col-sm-12 col-xs-12" >
   
     <form method="post" id="reg-form" name="form1"  >
     
-    <div class="row">
+    <div class="row" >
         <div class="col-md-4 col-sm-4 col-xs-4">
   <div class="form-group ">
-      <label class="control-label " for="select">
+      <label class="control-label " for="select" style="color:#ffffff;">
        Selecciona la especialidad del doctor<span>*</span>
       </label>
      <select class="form-control" id="listaEspecialidades" name="listaEspecialidades" required ><option></option></select>  
@@ -411,7 +421,7 @@ $(document).ready(function() {
      </div>
    <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="form-group ">
-      <label class="control-label " for="nombre_doctor" >
+      <label class="control-label " for="nombre_doctor" style="color:#ffffff;">
        Nombre del Doctor
       <span>*</span></label>
       <input class="form-control" id="nombre_doctor" name="nombre_doctor" placeholder="Nombre del Doctor" type="text" required>
@@ -419,7 +429,7 @@ $(document).ready(function() {
      </div>
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="form-group ">
-      <label class="control-label " for="apellidos_doctor">
+      <label class="control-label " for="apellidos_doctor" style="color:#ffffff;">
        Apellidos del Doctor
       <span>*</span></label>
       <input class="form-control" id="apellidos_doctor" name="apellidos_doctor" placeholder="Apellidos del Doctor" type="text" required>
@@ -427,14 +437,14 @@ $(document).ready(function() {
      </div>
    
      </div>
-    <label class="control-label " for="direccion_doctor">
+    <label class="control-label " for="direccion_doctor" style="color:#ffffff;">
        Direccion del Doctor
       </label>
     <div class="row">
     
     <div class="col-md-4 col-sm-4 col-xs-4">
   <div class="form-group ">
-      <label class="control-label " for="select">
+      <label class="control-label " for="select" style="color:#ffffff;">
        Selecciona un pais
       </label>
       <select class="form-control countries" id="countryId" name="countryId" onchange="cambiar_pais_mapa()">
@@ -445,7 +455,7 @@ $(document).ready(function() {
     
 <div class="col-md-4 col-sm-4 col-xs-4">
           <div class="form-group ">
-      <label class="control-label " for="select">
+      <label class="control-label " for="select" style="color:#ffffff;">
        Selecciona un estado o provincia
       </label>
       <select class="form-control states" id="stateId" name="stateId" onchange="cambiar_estado_mapa()">
@@ -455,7 +465,7 @@ $(document).ready(function() {
      </div>
      <div class="col-md-4 col-sm-4 col-xs-4">
           <div class="form-group ">
-      <label class="control-label " for="select">
+      <label class="control-label " for="select" style="color:#ffffff;">
        Selecciona una ciudad
       </label>
       <select class="form-control cities" id="cityId" name="cityId" onchange="cambiar_ciudad_mapa()">
@@ -466,7 +476,7 @@ $(document).ready(function() {
 
 <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="form-group ">
-      <label class="control-label " for="apellidos">
+      <label class="control-label " for="apellidos" style="color:#ffffff;">
        Dirección completa del Doctor (escribela a continuacion o pincha sobre el mapa)<br>
        <span>Ejemplo: Rancho Aguacaliente 1711, Pradera Dorada, 32618 Cd Juárez, Chih., México</span>
       <span>*</span></label>
@@ -480,7 +490,7 @@ $(document).ready(function() {
 
      <br><hr>
      <div class="form-group ">
-      <label class="control-label " for="message">
+      <label class="control-label " for="message" style="color:#ffffff;">
        Tu opinión
       <span>*</span></label>
       <textarea class="form-control" cols="40" id="opinion" name="opinion" rows="10" required></textarea>
@@ -490,11 +500,11 @@ $(document).ready(function() {
      
       <div class="row">
 <div class="col-xs-6">
-<label for="input-5" class="control-label">Puntualidad</label>
+<label for="input-5" class="control-label" style="color:#ffffff;">Puntualidad</label>
 <input id="puntualidad" name="puntualidad" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
 </div>
 <div class="col-xs-6">
-<label for="input-6" class="control-label">Atención</label>
+<label for="input-6" class="control-label" style="color:#ffffff;">Atención</label>
 <input id="atencion" name="atencion" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
 
 </div>
@@ -502,32 +512,32 @@ $(document).ready(function() {
 <br>
  <div class="row">
 <div class="col-xs-6">
-<label for="input-7" class="control-label">Instalaciones</label>
+<label for="input-7" class="control-label" style="color:#ffffff;">Instalaciones</label>
 <input id="instalaciones" name="instalaciones" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
 
 </div>
 <div class="col-xs-6">
-<label for="input-8" class="control-label">Precio</label>
+<label for="input-8" class="control-label" style="color:#ffffff;">Precio</label>
 <input id="precio" name="precio" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
 
 </div>
 </div>
  <div class="row">
 <div class="col-xs-6">
-<label for="input-7" class="control-label">Lo recomendarías?</label>
+<label for="input-7" class="control-label" style="color:#ffffff;">Lo recomendarías?</label>
 <input id="recomendarias" name="recomendarias" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
 
 </div>
 </div>
   <br><hr>
    <div class="row">
-     <label class="control-label " for="nombre">
+     <label class="control-label " for="nombre" style="color:#ffffff;">
        Tus datos
       </label>
       </div>
 <div class="col-md-6 col-sm-6 col-xs-6">
      <div class="form-group ">
-      <label class="control-label " for="nombre_usuario">
+      <label class="control-label " for="nombre_usuario" style="color:#ffffff;">
        Tu nombre
       <span>*</span></label>
       <input class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="Tu nombre" type="text" required>
@@ -535,7 +545,7 @@ $(document).ready(function() {
      </div>
 <div class="col-md-6 col-sm-6 col-xs-6">
      <div class="form-group ">
-      <label class="control-label " for="email_usuario">
+      <label class="control-label " for="email_usuario" style="color:#ffffff;">
        Tu email
       <span>*</span></label>
       <input class="form-control" id="email_usuario" name="email_usuario" placeholder="Tu email" type="email" required>
@@ -571,6 +581,37 @@ $(document).ready(function() {
 			<div class="row text-center title">
 				<h2>Buscar un Doctor</h2>
 				<h4 class="light muted">Busca a los mejores especialistas médicos de tu localidad.</h4>
+				
+			</div>
+			<div class="row services">
+
+
+
+   </div>
+  </div>
+ </div>
+</div>
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		</div>
+		<div class="cut cut-bottom"></div>
+	</section>
+	<section id="ver" class="section section-padded">
+		<div class="container">
+			<div class="row text-center title">
+				<h2>Leer opiniones</h2>
+				<h4 class="light muted">Lee las opiniones de otros usuarios sobre especialistas médicos de tu localidad.</h4>
 				
 			</div>
 			<div class="row services">
