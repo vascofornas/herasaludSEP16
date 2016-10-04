@@ -59,7 +59,7 @@ if(isset($_GET['cod']))
 		echo "EMAIL VALIDADO. GRACIAS POR OPINAR EN HERASALUD.COM!";
 		echo '<a href="index.html"><img src="img/herasaludlogo.png" ></a>';
 		
-		$stmt = $link->prepare('UPDATE tb_opiniones_doctor SET  `codigo_verificacion` = 1 WHERE codigo_verificacion = ?');
+		$stmt = $link->prepare('UPDATE tb_opiniones_doctor SET  `verificado` = 1 WHERE codigo_verificacion = ?');
 		$stmt->bindParam(1, $_GET['cod']);
 		$stmt->execute();
 		
