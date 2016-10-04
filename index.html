@@ -58,6 +58,8 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	
    <script src="js/location.js"></script>   
+    <script src="js/location_buscar.js"></script>   
+ 
    
  
 
@@ -95,6 +97,15 @@
 	function cargarEspecialidades(){
 		
 		var select = document.getElementById("listaEspecialidades");
+		var options = ["Alergología", "Anatomía Patológica", "Anestesiología", "Angiología", "Antropología Médica"];
+		for(var i = 0; i < options.length; i++) {
+		    var opt = options[i];
+		    var el = document.createElement("option");
+		    el.textContent = opt;
+		    el.value = opt;
+		    select.appendChild(el);
+		}
+		var select = document.getElementById("listaEspecialidades_buscar");
 		var options = ["Alergología", "Anatomía Patológica", "Anestesiología", "Angiología", "Antropología Médica"];
 		for(var i = 0; i < options.length; i++) {
 		    var opt = options[i];
@@ -585,12 +596,54 @@ $(document).ready(function() {
 			</div>
 			<div class="row services">
 
-
-
+  <div class="row" >
+        <div class="col-md-4 col-sm-4 col-xs-4">
+  <div class="form-group ">
+      <label class="control-label " for="select" style="color:#000000;">
+       Selecciona la especialidad del doctor<span>*</span>
+      </label>
+     <select class="form-control" id="listaEspecialidades_buscar" name="listaEspecialidades_buscar" required ><option></option></select>  
+      
+     </div>
+     </div>
+     </div>
+ <div class="row">
+    
+    <div class="col-md-4 col-sm-4 col-xs-4">
+  <div class="form-group ">
+      <label class="control-label " for="select" style="color:#000000;">
+       Selecciona un pais
+      </label>
+      <select class="form-control paises" id="paisId" name="paisId">
+       
+      </select>
+     </div>
+     </div>
+    
+<div class="col-md-4 col-sm-4 col-xs-4">
+          <div class="form-group ">
+      <label class="control-label " for="select" style="color:#000000;">
+       Selecciona un estado o provincia
+      </label>
+      <select class="form-control estados" id="estadoId" name="estadoId" >
+      
+      </select>
+     </div>
+     </div>
+     <div class="col-md-4 col-sm-4 col-xs-4">
+          <div class="form-group ">
+      <label class="control-label " for="select" style="color:#000000;">
+       Selecciona una ciudad
+      </label>
+      <select class="form-control ciudades" id="ciudadId" name="ciudadId" >
+      
+      </select>
+     </div>
+     </div>
    </div>
   </div>
  </div>
-</div>
+
 				
 			
 				

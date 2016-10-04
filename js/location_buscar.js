@@ -1,5 +1,5 @@
 
-    function ajaxCall() {
+    function ajaxCall_buscar() {
         this.send = function(data, url, method, success, type) {
           type = type||'json';
           var successRes = function(data) {
@@ -24,26 +24,26 @@
 
         }
 
-function locationInfo() {
-    var rootUrl = "api.php";
-    alert ("OPINAR");
+function locationInfo_buscar() {
+    var rootUrl = "api_buscar.php";
+    alert ("BUSCAR");
    
-    var call = new ajaxCall();
-    this.getCities = function(id) {
-        $(".cities option:gt(0)").remove();
-        var url = rootUrl+'?type=getCities&stateId=' + id;
+    var call = new ajaxCall_buscar();
+    this.getCiudades = function(id) {
+        $(".ciudades option:gt(0)").remove();
+        var url = rootUrl+'?type=getCiudades&estadoId=' + id;
         var method = "post";
         var data = {};
-        $('.cities').find("option:eq(0)").html("Procesando..");
+        $('.ciudades').find("option:eq(0)").html("Procesando..");
         call.send(data, url, method, function(data) {
-            $('.cities').find("option:eq(0)").html("Selecciona una ciudad");
+            $('.ciudades').find("option:eq(0)").html("Selecciona una ciudad");
             if(data.tp == 1){
                 $.each(data['result'], function(key, val) {
                     var option = $('<option />');
                     option.attr('value', key).text(val);
-                    $('.cities').append(option);
+                    $('.ciudades').append(option);
                 });
-                $(".cities").prop("disabled",false);
+                $(".ciudades").prop("disabled",false);
             }
             else{
                  alert(data.msg);
@@ -51,14 +51,14 @@ function locationInfo() {
         });
     };
 
-    this.getCities = function(id) {
-        $(".cities option:gt(0)").remove();
-        var url = rootUrl+'?type=getCities&stateId=' + id;
+    this.getCiudades = function(id) {
+        $(".ciudades option:gt(0)").remove();
+        var url = rootUrl+'?type=getCiudadess&estadoId=' + id;
         var method = "post";
         var data = {};
-  	  $('.cities').find("option:eq(0)").html("Procesando..");
+  	  $('.ciudades').find("option:eq(0)").html("Procesando..");
   	  call.send(data, url, method, function(data) {
-  	    $('.cities').find("option:eq(0)").html("Selecciona una ciudad");
+  	    $('.ciudades').find("option:eq(0)").html("Selecciona una ciudad");
   	    console.log(data);
   	    if (data.tp == 1) {
   	      var arr = [];
@@ -76,9 +76,9 @@ function locationInfo() {
   	        var option = $('<option />');
   	        var prop = Object.keys(val)[0];
   	        option.attr('value', prop).text(val[prop]);
-  	        $('.cities').append(option);
+  	        $('.ciudades').append(option);
   	      });
-  	      $(".cities").prop("disabled", false);
+  	      $(".ciudades").prop("disabled", false);
   	    } else {
   	      alert(data.msg);
   	    }
@@ -86,15 +86,15 @@ function locationInfo() {
   	};
     
     
-    this.getStates = function(id) {
-        $(".states option:gt(0)").remove(); 
-        $(".cities option:gt(0)").remove(); 
-        var url = rootUrl+'?type=getStates&countryId=' + id;
+    this.getEstados = function(id) {
+        $(".estados option:gt(0)").remove(); 
+        $(".ciudades option:gt(0)").remove(); 
+        var url = rootUrl+'?type=getEstados&paisId=' + id;
         var method = "post";
         var data = {};
-  	  $('.states').find("option:eq(0)").html("Procesando..");
+  	  $('.estados').find("option:eq(0)").html("Procesando..");
   	  call.send(data, url, method, function(data) {
-  	    $('.states').find("option:eq(0)").html("Selecciona un estado o provincia");
+  	    $('.estados').find("option:eq(0)").html("Selecciona un estado o provincia");
   	    console.log(data);
   	    if (data.tp == 1) {
   	      var arr = [];
@@ -112,9 +112,9 @@ function locationInfo() {
   	        var option = $('<option />');
   	        var prop = Object.keys(val)[0];
   	        option.attr('value', prop).text(val[prop]);
-  	        $('.states').append(option);
+  	        $('.estados').append(option);
   	      });
-  	      $(".states").prop("disabled", false);
+  	      $(".estados").prop("disabled", false);
   	    } else {
   	      alert(data.msg);
   	    }
@@ -127,13 +127,13 @@ function locationInfo() {
     
     
 
-    this.getCountries = function() {
-    	  var url = rootUrl + '?type=getCountries';
+    this.getPaises = function() {
+    	  var url = rootUrl + '?type=getPaises';
     	  var method = "post";
     	  var data = {};
-    	  $('.countries').find("option:eq(0)").html("Procesando..");
+    	  $('.paises').find("option:eq(0)").html("Procesando..");
     	  call.send(data, url, method, function(data) {
-    	    $('.countries').find("option:eq(0)").html("Selecciona un pais");
+    	    $('.paises').find("option:eq(0)").html("Selecciona un pais");
     	    console.log(data);
     	    if (data.tp == 1) {
     	      var arr = [];
@@ -151,9 +151,9 @@ function locationInfo() {
     	        var option = $('<option />');
     	        var prop = Object.keys(val)[0];
     	        option.attr('value', prop).text(val[prop]);
-    	        $('.countries').append(option);
+    	        $('.paises').append(option);
     	      });
-    	      $(".countries").prop("disabled", false);
+    	      $(".paises").prop("disabled", false);
     	    } else {
     	      alert(data.msg);
     	    }
@@ -163,24 +163,24 @@ function locationInfo() {
 }
 
 $(function() {
-var loc = new locationInfo();
-loc.getCountries();
- $(".countries").on("change", function(ev) {
-        var countryId = $(this).val();
-        if(countryId != ''){
-        loc.getStates(countryId);
+var loc = new locationInfo_buscar();
+loc.getPaises();
+ $(".paises").on("change", function(ev) {
+        var paisId = $(this).val();
+        if(paisId != ''){
+        loc.getEstados(paisId);
         }
         else{
-            $(".states option:gt(0)").remove();
+            $(".estados option:gt(0)").remove();
         }
     });
- $(".states").on("change", function(ev) {
-        var stateId = $(this).val();
-        if(stateId != ''){
-        loc.getCities(stateId);
+ $(".estados").on("change", function(ev) {
+        var estadoId = $(this).val();
+        if(estadoId != ''){
+        loc.getCiudades(estadoId);
         }
         else{
-            $(".cities option:gt(0)").remove();
+            $(".ciudades option:gt(0)").remove();
         }
     });
 });
