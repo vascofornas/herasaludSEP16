@@ -112,6 +112,24 @@ $statement->execute(array(
 ));
 
 
+$statement1 = $link->prepare("INSERT INTO tb_doctores
+		(nombre_doctor,apellidos_doctor,
+		direccion_doctor,especialidad_doctor
+		)
+    VALUES(:fnombre,:fapellidos,:fdireccion,:fespecialidad)");
+$statement1->execute(array(
+		
+		"fnombre" => $nombre_doctor,
+		"fapellidos" => $apellidos_doctor,
+		"fdireccion" => $direccion_doctor,
+		"fespecialidad" => $especialidad_doctor
+
+));
+
+
+
+
+
 $to = $email_usuario;
 $subject = 'Tu opinión ha sido registrada';
 $from = 'admin@herasalud.com';
@@ -239,5 +257,35 @@ if(mail($to, $subject, $message, $headers)){
     
     </table>
     <?php
+    
+    
+    
+    $administrador = "admin@herasalud.com";
+    $to = $administrador;
+    $subject = 'Hay una nueva opinion en HERASALUD.COM';
+    $from = 'admin@herasalud.com';
+    
+    // To send HTML mail, the Content-type header must be set
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    
+    // Create email headers
+    $headers .= 'From: '.$from."\r\n".
+    		'Reply-To: '.$from."\r\n" .
+    		'X-Mailer: PHP/' . phpversion();
+    
+    // Compose a simple HTML email message
+    $message = '<html><body>';
+    $message .= '<h1 style="color:#f40;">El usuario '.$nombre_usuario.' ha enviado una opinion a HERA!</h1>';
+    $message .= '<h1 style="color:#f40;">CODIGO '.$codigo.' !</h1>';
+    
+    $message .= '</body></html>';
+    
+    // Sending email
+    if(mail($to, $subject, $message, $headers)){
+    
+    } else{
+    
+    }
 	
 }

@@ -26,7 +26,7 @@
 
 function locationInfo() {
     var rootUrl = "api.php";
-    alert ("OPINAR");
+   
    
     var call = new ajaxCall();
     this.getCities = function(id) {
