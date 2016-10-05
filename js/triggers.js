@@ -2,19 +2,31 @@ $(document).ready(function() {
 
 $(".tablesearch").hide();
 // Search
+
+
 function search() {
 	var query_value = $('input#name').val();
+	var e = document.getElementById("listaEspecialidades_buscar");
+	var especialidad =  e.options[e.selectedIndex].text;
+	if (especialidad == ''){
+		alert ('selecciona una especialidad médica');
+		document.getElementById("name").value='';
+		return;
+	}
+	
 	
 	if(query_value !== ''){
 		$.ajax({
-			type: "POST",
+			type: "GET",
 			url: "php/search.php",
-			data: { query: query_value },
+			data: { query: query_value, esp: especialidad},
 			cache: false,
 			success: function(html){
 				$("table#resultTable tbody").html(html);
 			}
+			
 		});
+	
 	}return false;    
 }
 
