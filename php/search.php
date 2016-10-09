@@ -12,6 +12,8 @@ $html .= '</tr>';
 // Get the Search
 $search_string = preg_replace("/[^A-Za-z0-9]/", " ", $_POST['query']);
 $search_string = $test_db->real_escape_string($search_string);
+$search_string_esp = $_POST['esp'];
+
 
 // Check if length is more than 1 character
 if (strlen($search_string) >= 1 && $search_string !== ' ') {
@@ -20,8 +22,11 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 	//Count how many times a query occurs
 	$query_count = "UPDATE query_data SET querycount = querycount +1 WHERE name='" .$search_string. "'";
 	// Query
-	$query = 'SELECT * FROM tb_doctores WHERE nombre_doctor LIKE "%'.$search_string.'%" OR apellidos_doctor LIKE "%'.$search_string.'%" 
-			OR especialidad_doctor LIKE "%'.$search_string.'%" ';
+	$query = 'SELECT * FROM tb_doctores WHERE  especialidad_doctor = "%'.$search_string_esp.'%" OR nombre_doctor LIKE "%'.$search_string.'%" OR apellidos_doctor LIKE "%'.$search_string.'%" 
+			
+					OR ciudad_doctor LIKE "%'.$search_string.'%"
+							OR estado_doctor LIKE "%'.$search_string.'%"
+									OR pais_doctor LIKE "%'.$search_string.'%"  ';
 
 	//Timestamp entry of search for later display
 	$time_entry = $test_db->query($time);
