@@ -7,12 +7,15 @@ $html .= '<td class="small">espString</td>';
 $html .= '<td class="small">ciuString</td>';
 $html .= '<td class="small">estString</td>';
 $html .= '<td class="small">paiString</td>';
+$html .= '<td class="small">codeString</td>';
 $html .= '</tr>';
 
 // Get the Search
-$search_string = preg_replace("/[^A-Za-z0-9]/", " ", $_POST['query']);
+$search_string = preg_replace("/[^A-Za-z0-9]/", " ", $_GET['query']);
 $search_string = $test_db->real_escape_string($search_string);
-$search_string_esp = $_POST['esp'];
+
+$search_string_esp =  $_GET['esp'];
+
 
 
 // Check if length is more than 1 character
@@ -22,11 +25,11 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 	//Count how many times a query occurs
 	$query_count = "UPDATE query_data SET querycount = querycount +1 WHERE name='" .$search_string. "'";
 	// Query
-	$query = 'SELECT * FROM tb_doctores WHERE  especialidad_doctor = "%'.$search_string_esp.'%" OR nombre_doctor LIKE "%'.$search_string.'%" OR apellidos_doctor LIKE "%'.$search_string.'%" 
-			
-					OR ciudad_doctor LIKE "%'.$search_string.'%"
-							OR estado_doctor LIKE "%'.$search_string.'%"
-									OR pais_doctor LIKE "%'.$search_string.'%"  ';
+	$query = 'SELECT * FROM tb_doctores WHERE especialidad_doctor = "'.$search_string_esp.'" AND  (nombre_doctor LIKE "%'.$search_string.'%" 
+			OR apellidos_doctor LIKE "%'.$search_string.'%" 
+			OR ciudad_doctor LIKE "%'.$search_string.'%"
+			OR estado_doctor LIKE "%'.$search_string.'%"
+			OR pais_doctor LIKE "%'.$search_string.'%" ) ';
 
 	//Timestamp entry of search for later display
 	$time_entry = $test_db->query($time);
@@ -49,6 +52,9 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 		 $d_estado = preg_replace("/".$search_string."/i", "<b>".$search_string."</b>", $result['estado_doctor']);
 		 $d_pais = preg_replace("/".$search_string."/i", "<b>".$search_string."</b>", $result['pais_doctor']);
 		 
+		 $enlace = '<a href="doctor_info.php?cod='.$result['codigo_doctor'].'">
+  <img src="img/info.png"  style="width:42px;height:42px;border:0">
+</a>';
 		
 		
 		// Replace the items into above HTML
@@ -57,15 +63,17 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 		$o = str_replace('ciuString', $d_ciudad, $o);
 		$o = str_replace('estString', $d_estado, $o);
 		$o = str_replace('paiString', $d_pais, $o);
+		$o = str_replace('codeString', $enlace, $o);
 		// Output it
 		echo($o);
 			}
 		}else{
 		// Replace for no results
-		$o = str_replace('nameString', '<span class="label label-danger">No Names Found</span>', $html);
-		$o = str_replace('compString', '', $o);
+		$o = str_replace('nameString', '<span class="label label-danger">NO HAY RESULTADOS</span>', $html);
+		$o = str_replace('espString', '', $o);
 		$o = str_replace('ciuString', '', $o);
-		$o = str_replace('cityString', '', $o);
+		$o = str_replace('estString', '', $o);
+		$o = str_replace('paiString', '', $o);
 		// Output
 		echo($o);
 	}
