@@ -114,15 +114,17 @@ $statement->execute(array(
 
 $statement1 = $link->prepare("INSERT INTO tb_doctores
 		(nombre_doctor,apellidos_doctor,
-		direccion_doctor,especialidad_doctor
+		direccion_doctor,especialidad_doctor,codigo_doctor
 		)
-    VALUES(:fnombre,:fapellidos,:fdireccion,:fespecialidad)");
+    VALUES(:fnombre,:fapellidos,:fdireccion,:fespecialidad,:fcodigo)");
 $statement1->execute(array(
 		
 		"fnombre" => $nombre_doctor,
 		"fapellidos" => $apellidos_doctor,
 		"fdireccion" => $direccion_doctor,
-		"fespecialidad" => $especialidad_doctor
+		"fespecialidad" => $especialidad_doctor,
+
+		"fcodigo" => $codigo
 
 ));
 
