@@ -52,11 +52,11 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 		 $d_estado = preg_replace("/".$search_string."/i", "<b>".$search_string."</b>", $result['estado_doctor']);
 		 $d_pais = preg_replace("/".$search_string."/i", "<b>".$search_string."</b>", $result['pais_doctor']);
 		 
-		 $enlace = '<a href="doctor_info.php?cod='.$result['codigo_doctor'].'">
+		 $enlace = '<a href="#modal1" role="button" class="btn btn-large btn-primary" data-toggle="modal" data-id="'.$result['codigo_doctor'].'">
   <img src="img/info.png"  style="width:42px;height:42px;border:0">
 </a>';
 		
-		
+		 
 		// Replace the items into above HTML
 		$o = str_replace('nameString', $d_name." ".$d_apellidos, $html);
 		$o = str_replace('espString', $d_especialidad, $o);

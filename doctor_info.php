@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Comparte y Busca a los mejores especialistas m√©dicos de tu localidad</title>
+	<title>Comparte y Busca a los mejores especialistas mÈdicos de tu localidad</title>
 	<meta name="description" content="Cardio is a free one page template made exclusively for Codrops by Luka Cvetinovic" />
 	<meta name="keywords" content="html template, css, free, one page, gym, fitness, web design" />
 	<meta name="author" content="Luka Cvetinovic for Codrops" />
@@ -97,7 +97,7 @@
 	function cargarEspecialidades(){
 		
 		var select = document.getElementById("listaEspecialidades");
-		var options = ["Alergolog√≠a", "Anatom√≠a Patol√≥gica", "Anestesiolog√≠a", "Angiolog√≠a", "Antropolog√≠a M√©dica"];
+		var options = ["AlergologÌa", "AnatomÌa PatolÛgica", "AnestesiologÌa", "AngiologÌa", "AntropologÌa MÈdica"];
 		for(var i = 0; i < options.length; i++) {
 		    var opt = options[i];
 		    var el = document.createElement("option");
@@ -106,7 +106,7 @@
 		    select.appendChild(el);
 		}
 		var select = document.getElementById("listaEspecialidades_buscar");
-		var options = ["Alergolog√≠a", "Anatom√≠a Patol√≥gica", "Anestesiolog√≠a", "Angiolog√≠a", "Antropolog√≠a M√©dica"];
+		var options = ["AlergologÌa", "AnatomÌa PatolÛgica", "AnestesiologÌa", "AngiologÌa", "AntropologÌa MÈdica"];
 		for(var i = 0; i < options.length; i++) {
 		    var opt = options[i];
 		    var el = document.createElement("option");
@@ -316,19 +316,7 @@ background-size:100% auto;
 $(document).ready(function() {	
 	
 	// submit form using $.ajax() method
-	$('#modal1').on('show.bs.modal', function (e) {
-		
-        var rowid = $(e.relatedTarget).data('id');
-        alert (rowid);
-        $.ajax({
-            type : 'post',
-            url : 'fetch_record.php', //Here you will fetch records 
-            data :  'rowid='+ rowid, //Pass $id
-            success : function(data){
-            $('.fetched-data').html(data);//Show fetched data from database
-            }
-        });
-     });
+	
 	
 	$('#reg-form').submit(function(e){
 	
@@ -380,11 +368,11 @@ $(document).ready(function() {
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-center main-nav ">
-					<li ><span class="menu_items"><span class="menu_items"><a href="#intro">Portada</a></span></span></li>
-					<li><span class="menu_items"><span class="menu_items"><a href="#doctores">Opinar</a></span></span></li>
-					<li><span class="menu_items"><span class="menu_items"><a href="#buscar">Buscar</a></span></span></li>
+					<li ><span class="menu_items"><span class="menu_items"><a href="index.html#intro">Portada</a></span></span></li>
+					<li><span class="menu_items"><span class="menu_items"><a href="index.html#doctores">Opinar</a></span></span></li>
+					<li><span class="menu_items"><span class="menu_items"><a href="index.html#buscar">Buscar</a></span></span></li>
 					
-					<li><span class="menu_items"><span class="menu_items"><a href="#ver">Ver Opiniones</a></span></span></li>
+					<li><span class="menu_items"><span class="menu_items"><a href="index.html#ver">Ver Opiniones</a></span></span></li>
 					
 					
 					
@@ -396,218 +384,14 @@ $(document).ready(function() {
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-	<header id="intro">
-		<div class="container">
-			<div class="table">
-				<div class="header-text">
-					<div class="row">
-						<div class="col-md-12 text-center">
-						<img src="img/herasaludlogo.png" data-active-url="img/herasaludlogo.png" alt="">
-							<h1 class="light white">Opina sobre especialistas m√©dicos.</h1>
-							<h1 class="white typed">Busca a los doctores m√°s recomendados de tu localidad o pa√≠s.</h1>
-							<span class="typed-cursor">|</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+
 	
-	<section id="doctores" class="section section-padded">
-		<div class="container" >
-		
-		
-		
-		<div id="form-contenido" >
-			<div class="row text-center title">
-				<h2>Doctores</h2>
-				<h4 class="light muted">Opina de un doctor. Tu opini√≥n es importante para todos.</h4>
-				
-			</div>
-			<div class="row services">
-				
-				<!-- HTML Form (wrapped in a .bootstrap-iso div) -->
-<div class="bootstrap-iso">
- <div class="container-fluid" style="
-  
-   background-color:#1f273e;">
-  <div class="row" >
-   <div class="col-md-12 col-sm-12 col-xs-12" >
-  
-    <form method="post" id="reg-form" name="form1"  >
-    
-    <div class="row" >
-        <div class="col-md-4 col-sm-4 col-xs-4">
-  <div class="form-group ">
-      <label class="control-label " for="select" style="color:#ffffff;">
-       Selecciona la especialidad del doctor<span>*</span>
-      </label>
-     <select class="form-control" id="listaEspecialidades" name="listaEspecialidades" required ><option></option></select>  
-      
-     </div>
-     </div>
-   <div class="col-md-12 col-sm-12 col-xs-12">
-     <div class="form-group ">
-      <label class="control-label " for="nombre_doctor" style="color:#ffffff;">
-       Nombre del Doctor
-      <span>*</span></label>
-      <input class="form-control" id="nombre_doctor" name="nombre_doctor" placeholder="Nombre del Doctor" type="text" required>
-     </div>
-     </div>
-     <div class="col-md-12 col-sm-12 col-xs-12">
-     <div class="form-group ">
-      <label class="control-label " for="apellidos_doctor" style="color:#ffffff;">
-       Apellidos del Doctor
-      <span>*</span></label>
-      <input class="form-control" id="apellidos_doctor" name="apellidos_doctor" placeholder="Apellidos del Doctor" type="text" required>
-     </div>
-     </div>
-   
-     </div>
-    <label class="control-label " for="direccion_doctor" style="color:#ffffff;">
-       Direccion del Doctor
-      </label>
-    <div class="row">
-    
-    <div class="col-md-4 col-sm-4 col-xs-4">
-  <div class="form-group ">
-      <label class="control-label " for="select" style="color:#ffffff;">
-       Selecciona un pais
-      </label>
-      <select class="form-control countries" id="countryId" name="countryId" onchange="cambiar_pais_mapa()">
-       
-      </select>
-     </div>
-     </div>
-    
-<div class="col-md-4 col-sm-4 col-xs-4">
-          <div class="form-group ">
-      <label class="control-label " for="select" style="color:#ffffff;">
-       Selecciona un estado o provincia
-      </label>
-      <select class="form-control states" id="stateId" name="stateId" onchange="cambiar_estado_mapa()">
-      
-      </select>
-     </div>
-     </div>
-     <div class="col-md-4 col-sm-4 col-xs-4">
-          <div class="form-group ">
-      <label class="control-label " for="select" style="color:#ffffff;">
-       Selecciona una ciudad
-      </label>
-      <select class="form-control cities" id="cityId" name="cityId" onchange="cambiar_ciudad_mapa()">
-      
-      </select>
-     </div>
-     </div>
-
-<div class="col-md-12 col-sm-12 col-xs-12">
-     <div class="form-group ">
-      <label class="control-label " for="apellidos" style="color:#ffffff;">
-       Direcci√≥n completa del Doctor (escribela a continuacion o pincha sobre el mapa)<br>
-       <span>Ejemplo: Rancho Aguacaliente 1711, Pradera Dorada, 32618 Cd Ju√°rez, Chih., M√©xico</span>
-      <span>*</span></label>
-      <input class="form-control" id="direccion_doctor" name="direccion_doctor" placeholder="Direcci√≥n completa del doctor" type="text" required>
-     </div>
-     </div>
-<br><hr>
-<div id="map"></div>
-
-</div>
-
-     <br><hr>
-     <div class="form-group ">
-      <label class="control-label " for="message" style="color:#ffffff;">
-       Tu opini√≥n
-      <span>*</span></label>
-      <textarea class="form-control" cols="40" id="opinion" name="opinion" rows="10" required></textarea>
-     </div>
-     
-     
-     
-      <div class="row">
-<div class="col-xs-6">
-<label for="input-5" class="control-label" style="color:#ffffff;">Puntualidad</label>
-<input id="puntualidad" name="puntualidad" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
-</div>
-<div class="col-xs-6">
-<label for="input-6" class="control-label" style="color:#ffffff;">Atenci√≥n</label>
-<input id="atencion" name="atencion" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
-
-</div>
-</div>
-<br>
- <div class="row">
-<div class="col-xs-6">
-<label for="input-7" class="control-label" style="color:#ffffff;">Instalaciones</label>
-<input id="instalaciones" name="instalaciones" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
-
-</div>
-<div class="col-xs-6">
-<label for="input-8" class="control-label" style="color:#ffffff;">Precio</label>
-<input id="precio" name="precio" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
-
-</div>
-</div>
- <div class="row">
-<div class="col-xs-6">
-<label for="input-7" class="control-label" style="color:#ffffff;">Lo recomendar√≠as?</label>
-<input id="recomendarias" name="recomendarias" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" data-rtl="false">
-
-</div>
-</div>
-  <br><hr>
-   <div class="row">
-     <label class="control-label " for="nombre" style="color:#ffffff;">
-       Tus datos
-      </label>
-      </div>
-<div class="col-md-6 col-sm-6 col-xs-6">
-     <div class="form-group ">
-      <label class="control-label " for="nombre_usuario" style="color:#ffffff;">
-       Tu nombre
-      <span>*</span></label>
-      <input class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="Tu nombre" type="text" required>
-     </div>
-     </div>
-<div class="col-md-6 col-sm-6 col-xs-6">
-     <div class="form-group ">
-      <label class="control-label " for="email_usuario" style="color:#ffffff;">
-       Tu email
-      <span>*</span></label>
-      <input class="form-control" id="email_usuario" name="email_usuario" placeholder="Tu email" type="email" required>
-     </div>
-     </div>
-
-<br><hr>
-
-     <div class="form-group">
-      <div>
-       <button class="btn btn-primary form-control" type="submit">
-        Enviar
-       </button>
-      </div>
-     </div>
-    </form>
-    </div>
-   </div>
-  </div>
- </div>
-</div>
-				</div>
-		
-				
-			 <div id="form-content"></div>	
-		
-			</div>
-		
-		<div class="cut cut-bottom"></div>
-	</section>
+	
 	<section id="buscar" class="section section-padded">
 		<div class="container">
 			<div class="row text-center title">
 				<h2>Buscar un Doctor</h2>
-				<h4 class="light muted">Busca a los mejores especialistas m√©dicos de tu localidad.</h4>
+				<h4 class="light muted">Busca a los mejores especialistas mÈdicos de tu localidad.</h4>
 				
 			</div>
 			<div class="row services">
@@ -700,10 +484,10 @@ $(document).ready(function() {
 		<div class="container">
 			<div class="row text-center title">
 				<h2>Leer opiniones</h2>
-				<h4 class="light muted">Lee las opiniones de otros usuarios sobre especialistas m√©dicos de tu localidad.</h4>
+				<h4 class="light muted">Lee las opiniones de otros usuarios sobre especialistas mÈdicos de tu localidad.</h4>
 
 
- 
+  
 			</div>
 		</div>
 	</section>
@@ -751,8 +535,8 @@ $(document).ready(function() {
 			<div class="row">
 				<div class="col-sm-6 text-center-mobile">
 					<h3 class="white">Registrate y te enviaremos todas las novedades</h3>
-					<h5 class="light regular light-white">Comparte y Busca a los mejores especialistas m√©dicos de tu localidad.</h5>
-					<a href="#" class="btn btn-blue ripple trial-button">Iniciar Sesi√≥n</a>
+					<h5 class="light regular light-white">Comparte y Busca a los mejores especialistas mÈdicos de tu localidad.</h5>
+					<a href="#" class="btn btn-blue ripple trial-button">Iniciar SesiÛn</a>
 				</div>
 				<div class="col-sm-6 text-center-mobile">
 					<h3 class="white">Horario de Apertura <span class="open-blink"></span></h3>
