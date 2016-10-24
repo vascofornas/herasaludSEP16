@@ -301,7 +301,7 @@ $(document).ready(function() {
 </p></div>
 <div align="left">
      <div id="comentario">
-     <p>Donec sed odio dui. Cras justo odio, 
+     <p>Mi comentario es Donec sed odio dui. Cras justo odio, 
      dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. 
      Fusce dapibus, tellus ac cursus commodo, 
      tortor mauris condimentum nibh, 

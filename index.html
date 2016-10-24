@@ -97,7 +97,24 @@
 	function cargarEspecialidades(){
 		
 		var select = document.getElementById("listaEspecialidades");
-		var options = ["Alergología", "Anatomía Patológica", "Anestesiología", "Angiología", "Antropología Médica"];
+		var options = ["Alergología", "Anatomía Patológica", "Anestesiología", "Angiología", "Antropología Médica",
+		               "Biomedicina","Bioquímica clínica","Bioética",
+		               "Cardiología","Ciencias de la nutrición","Ciencias forenses","Cirugía","Cirugía general y del aparato digestivo","Cirugía maxilo-facial","Cirugía plástica","Cirugía torácica",
+		               "Dermatología","Dietética",
+		               "Embriología","Endocrinología","Epidemiología",
+		               "Farmacología clínica","Física médica","Fitoterapia",
+		               "Gastroenterología","Geriatría","Gerontología",
+		               "Hematología","Hepatología",
+		               "Infectología","Informática en salud","Inmunología",
+		               "Medicina aeronaútica","Medicina del trabajo","Medicina deportiva","Medicina familiar y comunitaria","Medicina forense","Medicina intensiva","Medicina interna","Medicina nuclear","Medicina paliativa","Medicina preventiva","Medicina traslacional",
+		               "Nefrología","Neumología","Neurologia",
+		               "Obstetricia y ginecología","Odontología","Oftalmología","Oncología","Optometría","Ortopedia","Otorrinolaringología",
+		               "Parasitología","Pediatría","Podología","Psiquiatría",
+		               "Radiología","Reumatología","Rinología",
+		               "Semiología clínica",
+		               "Terapia ocupacional","Toxicología","Traumatología",
+		               "Urgencias médicas","Urología","Otras especialidades"
+		               ];
 		for(var i = 0; i < options.length; i++) {
 		    var opt = options[i];
 		    var el = document.createElement("option");
@@ -106,7 +123,24 @@
 		    select.appendChild(el);
 		}
 		var select = document.getElementById("listaEspecialidades_buscar");
-		var options = ["Alergología", "Anatomía Patológica", "Anestesiología", "Angiología", "Antropología Médica"];
+		var options = ["Alergología", "Anatomía Patológica", "Anestesiología", "Angiología", "Antropología Médica",
+		               "Biomedicina","Bioquímica clínica","Bioética",
+		               "Cardiología","Ciencias de la nutrición","Ciencias forenses","Cirugía","Cirugía general y del aparato digestivo","Cirugía maxilo-facial","Cirugía plástica","Cirugía torácica",
+		               "Dermatología","Dietética",
+		               "Embriología","Endocrinología","Epidemiología",
+		               "Farmacología clínica","Física médica","Fitoterapia",
+		               "Gastroenterología","Geriatría","Gerontología",
+		               "Hematología","Hepatología",
+		               "Infectología","Informática en salud","Inmunología",
+		               "Medicina aeronaútica","Medicina del trabajo","Medicina deportiva","Medicina familiar y comunitaria","Medicina forense","Medicina intensiva","Medicina interna","Medicina nuclear","Medicina paliativa","Medicina preventiva","Medicina traslacional",
+		               "Nefrología","Neumología","Neurologia",
+		               "Obstetricia y ginecología","Odontología","Oftalmología","Oncología","Optometría","Ortopedia","Otorrinolaringología",
+		               "Parasitología","Pediatría","Podología","Psiquiatría",
+		               "Radiología","Reumatología","Rinología",
+		               "Semiología clínica",
+		               "Terapia ocupacional","Toxicología","Traumatología",
+		               "Urgencias médicas","Urología","Otras especialidades"
+		               ];
 		for(var i = 0; i < options.length; i++) {
 		    var opt = options[i];
 		    var el = document.createElement("option");
