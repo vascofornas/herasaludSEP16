@@ -29,7 +29,8 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 			OR apellidos_doctor LIKE "%'.$search_string.'%" 
 			OR ciudad_doctor LIKE "%'.$search_string.'%"
 			OR estado_doctor LIKE "%'.$search_string.'%"
-			OR pais_doctor LIKE "%'.$search_string.'%" ) ';
+			OR pais_doctor LIKE "%'.$search_string.'%" 
+					AND doctor_activo = 1) ';
 
 	//Timestamp entry of search for later display
 	$time_entry = $test_db->query($time);
@@ -52,7 +53,7 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 		 $d_estado = preg_replace("/".$search_string."/i", "<b>".$search_string."</b>", $result['estado_doctor']);
 		 $d_pais = preg_replace("/".$search_string."/i", "<b>".$search_string."</b>", $result['pais_doctor']);
 		 
-		 $enlace = '<a href="#modal1" role="button" class="btn btn-large btn-primary" data-toggle="modal" data-id="'.$result['codigo_doctor'].'">
+		 $enlace = '<a href="info_doctor.php?cod='.$result['codigo_doctor'].'"/#doctor role="button" class="btn btn-large btn-primary" data-toggle="modal" data-id="'.$result['codigo_doctor'].'">
   <img src="img/info.png"  style="width:42px;height:42px;border:0">
 </a>';
 		

@@ -315,20 +315,7 @@ background-size:100% auto;
 <script type="text/javascript">
 $(document).ready(function() {	
 	
-	// submit form using $.ajax() method
-	$('#modal1').on('show.bs.modal', function (e) {
-		
-        var rowid = $(e.relatedTarget).data('id');
-        alert (rowid);
-        $.ajax({
-            type : 'post',
-            url : 'fetch_record.php', //Here you will fetch records 
-            data :  'rowid='+ rowid, //Pass $id
-            success : function(data){
-            $('.fetched-data').html(data);//Show fetched data from database
-            }
-        });
-     });
+	
 	
 	$('#reg-form').submit(function(e){
 	
@@ -714,6 +701,14 @@ $(document).ready(function() {
 				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
 				<h3 class="white">Sign Up</h3>
 				<form action="" class="popup-form">
+					<input type="text" class="form-control form-white" placeholder="Full Name">
+					<input type="text" class="form-control form-white" placeholder="Email Address">
+					<input type="text" class="form-control form-white" placeholder="Full Name">
+					<input type="text" class="form-control form-white" placeholder="Email Address">
+					<input type="text" class="form-control form-white" placeholder="Full Name">
+					<input type="text" class="form-control form-white" placeholder="Email Address">
+					<input type="text" class="form-control form-white" placeholder="Full Name">
+					<input type="text" class="form-control form-white" placeholder="Email Address">
 					<input type="text" class="form-control form-white" placeholder="Full Name">
 					<input type="text" class="form-control form-white" placeholder="Email Address">
 					<input type="text" class="form-control form-white" placeholder="Full Name">
