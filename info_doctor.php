@@ -1,5 +1,6 @@
 <?php header('Content-Type: charset=utf-8'); 
 require_once 'php/db.php';
+require_once 'php/pdo_connect.php';
 $doctor = $_GET['cod'];
 $getID = mysqli_fetch_assoc(mysqli_query($test_db, "SELECT * FROM tb_doctores WHERE codigo_doctor = '".$doctor."'"));
 $userID = $getID['id_doctor'];
@@ -163,8 +164,15 @@ var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: parseFloat('<?php echo $lat;?>'), lng: parseFloat('<?php echo $lng;?>')},
-    zoom: 8
+    zoom: 13
   });
+  var myLatlng = new google.maps.LatLng(<?php echo $lat; ?>,<?php echo $lng; ?>);
+  
+  var marker = new google.maps.Marker({
+      position: myLatlng, 
+      map: map,
+      title:"Hello World!"
+  }); 
 }
 
     </script>
@@ -269,6 +277,279 @@ $(document).ready(function() {
           <h2><?php echo $getID['apellidos_doctor']?></h2>
           
           <h3><?php echo $getID['especialidad_doctor']?></h3>
+          
+          
+          
+          
+            <?php //empieza loop de comentarios
+          
+          $codigo = $_GET['cod'];
+          $sqlSelect = 'SELECT *
+    FROM tb_opiniones_doctor
+    WHERE codigo_verificacion = :mycodigo';
+          $sth = $conn->prepare($sqlSelect);
+          $sth->execute(array(':mycodigo' => $codigo));
+          $suma = 0;
+          $valor_puntualidad = 0;
+          $valor_instalaciones = 0;
+          $valor_atencion = 0;
+          $valor_precio = 0;
+          $valor_lo_recomiendas = 0;
+          
+          foreach ($sth->fetchAll() as $row) {
+         $suma = $suma +1;
+          	$valor_puntualidad = $valor_puntualidad +$row['puntualidad'];
+          	$valor_instalaciones = $valor_instalaciones + $row['instalaciones'];
+          	$valor_atencion = $valor_atencion +$row['atencion'];
+          	$valor_precio = $valor_precio +$row['precio'];
+          	$valor_lo_recomiendas = $valor_lo_recomiendas + $row['lo_recomiendas'];
+           
+          } 
+          
+          echo "Este doctor tiene ".$suma." opiniones de usuarios";
+           //puntualidad
+           if ($suma == 0){
+           	$valor_puntualidad = 0;
+           	$valor_instalaciones = 0;
+           	$valor_atencion = 0;
+           	$valor_precio = 0;
+           	$valor_lo_recomiendas = 0;
+           	
+           }
+           else{
+           	$valor_puntualidad = $valor_puntualidad / $suma;
+           	$valor_instalaciones =$valor_instalaciones / $suma;
+           	$valor_atencion = $valor_atencion / $suma;
+           	$valor_precio = $valor_precio / $suma;
+           	$valor_lo_recomiendas = $valor_lo_recomiendas / $suma;
+           	
+           	
+           if ($valor_puntualidad == 0  && $valor_puntualidad < 0.5){
+           	$imagen_puntualidad = "imagenes/0.png";
+           }
+           if ($valor_puntualidad >= 0.5 && $valor_puntualidad <1){
+           	$imagen_puntualidad = "imagenes/05.png";
+           }
+           if ($valor_puntualidad >= 1 && $valor_puntualidad < 1.5 ){
+           	$imagen_puntualidad = "imagenes/1.png";
+           }
+           if ($valor_puntualidad >= 1.5 && $valor_puntualidad < 2 ){
+           	$imagen_puntualidad = "imagenes/15.png";
+           }
+           if ($valor_puntualidad >= 2 && $valor_puntualidad < 2.5 ){
+           	$imagen_puntualidad = "imagenes/2.png";
+           }
+           if ($valor_puntualidad >= 2.5 && $valor_puntualidad < 3 ){
+           	$imagen_puntualidad = "imagenes/25.png";
+           }
+           if ($valor_puntualidad >= 3 && $valor_puntualidad <= 3.5  ){
+           	$imagen_puntualidad = "imagenes/3.png";
+           }
+           if ($valor_puntualidad >= 3.5 && $valor_puntualidad < 4 ){
+           	$imagen_puntualidad = "imagenes/35.png";
+           }
+           if ($valor_puntualidad >= 4 && $valor_puntualidad < 4.5 ){
+           	$imagen_puntualidad = "imagenes/4.png";
+           }
+           if ($valor_puntualidad >= 4.5 && $valor_puntualidad  < 5){
+           	$imagen_puntualidad = "imagenes/45.png";
+           }
+           if ($valor_puntualidad == 5 ){
+           	$imagen_puntualidad = "imagenes/5.png";
+           }
+           if ($valor_puntualidad == "" ){
+           	$imagen_puntualidad = "imagenes/0.png";
+           }
+           if ($valor_puntualidad == 0 ){
+           	$imagen_puntualidad = "imagenes/0.png";
+           }
+           //atencion
+            
+             if ($valor_instalaciones == 0  && $valor_instalaciones < 0.5){
+           	$imagen_instalaciones = "imagenes/0.png";
+           }
+           if ($valor_instalaciones >= 0.5 && $valor_instalaciones <1){
+           	$imagen_instalaciones = "imagenes/05.png";
+           }
+           if ($valor_instalaciones >= 1 && $valor_instalaciones < 1.5 ){
+           	$imagen_instalaciones = "imagenes/1.png";
+           }
+           if ($valor_instalaciones >= 1.5 && $valor_instalaciones < 2 ){
+           	$imagen_instalaciones = "imagenes/15.png";
+           }
+           if ($valor_instalaciones >= 2 && $valor_instalaciones < 2.5 ){
+           	$imagen_instalaciones = "imagenes/2.png";
+           }
+           if ($valor_instalaciones >= 2.5 && $valor_instalaciones < 3 ){
+           	$imagen_instalaciones = "imagenes/25.png";
+           }
+           if ($valor_instalaciones >= 3 && $valor_instalaciones <= 3.5  ){
+           	$imagen_instalaciones = "imagenes/3.png";
+           }
+           if ($valor_instalaciones >= 3.5 && $valor_instalaciones < 4 ){
+           	$imagen_instalaciones = "imagenes/35.png";
+           }
+           if ($valor_instalaciones >= 4 && $valor_instalaciones < 4.5 ){
+           	$imagen_instalaciones = "imagenes/4.png";
+           }
+           if ($valor_instalaciones >= 4.5 && $valor_instalaciones  < 5){
+           	$imagen_instalaciones = "imagenes/45.png";
+           }
+           if ($valor_instalaciones == 5 ){
+           	$imagen_instalaciones = "imagenes/5.png";
+           }
+           if ($valor_instalaciones == "" ){
+           	$imagen_instalaciones = "imagenes/0.png";
+           }
+           if ($valor_instalaciones == 0 ){
+           	$imagen_instalaciones = "imagenes/0.png";
+           }
+           //instalaciones
+           if ($valor_atencion == 0  && $valor_atencion < 0.5){
+           	$imagen_atencion = "imagenes/0.png";
+           }
+           if ($valor_atencion >= 0.5 && $valor_atencion <1){
+           	$imagen_atencion = "imagenes/05.png";
+           }
+           if ($valor_atencion >= 1 && $valor_atencion < 1.5 ){
+           	$imagen_atencion = "imagenes/1.png";
+           }
+           if ($valor_atencion >= 1.5 && $valor_atencion < 2 ){
+           	$imagen_atencion = "imagenes/15.png";
+           }
+           if ($valor_atencion >= 2 && $valor_atencion < 2.5 ){
+           	$imagen_atencion = "imagenes/2.png";
+           }
+           if ($valor_atencion >= 2.5 && $valor_atencion < 3 ){
+           	$imagen_atencion = "imagenes/25.png";
+           }
+           if ($valor_atencion >= 3 && $valor_atencion <= 3.5  ){
+           	$imagen_atencion = "imagenes/3.png";
+           }
+           if ($valor_atencion >= 3.5 && $valor_atencion < 4 ){
+           	$imagen_atencion = "imagenes/35.png";
+           }
+           if ($valor_atencion >= 4 && $valor_atencion < 4.5 ){
+           	$imagen_atencion = "imagenes/4.png";
+           }
+           if ($valor_atencion >= 4.5 && $valor_atencion  < 5){
+           	$imagen_atencion = "imagenes/45.png";
+           }
+           if ($valor_atencion == 5 ){
+           	$imagen_atencion = "imagenes/5.png";
+           }
+           if ($valor_atencion == "" ){
+           	$imagen_atencion = "imagenes/0.png";
+           }
+           if ($valor_atencion == 0 ){
+           	$imagen_atencion = "imagenes/0.png";
+           }
+           
+           //precio
+             if ($valor_precio == 0  && $valor_precio < 0.5){
+           	$imagen_precio = "imagenes/0.png";
+           }
+           if ($valor_precio >= 0.5 && $valor_precio <1){
+           	$imagen_precio = "imagenes/05.png";
+           }
+           if ($valor_precio >= 1 && $valor_precio < 1.5 ){
+           	$imagen_precio = "imagenes/1.png";
+           }
+           if ($valor_precio >= 1.5 && $valor_precio < 2 ){
+           	$imagen_precio = "imagenes/15.png";
+           }
+           if ($valor_precio >= 2 && $valor_precio < 2.5 ){
+           	$imagen_precio = "imagenes/2.png";
+           }
+           if ($valor_precio >= 2.5 && $valor_precio < 3 ){
+           	$imagen_precio = "imagenes/25.png";
+           }
+           if ($valor_precio >= 3 && $valor_precio <= 3.5  ){
+           	$imagen_precio = "imagenes/3.png";
+           }
+           if ($valor_precio >= 3.5 && $valor_precio < 4 ){
+           	$imagen_precio = "imagenes/35.png";
+           }
+           if ($valor_precio >= 4 && $valor_precio < 4.5 ){
+           	$imagen_precio = "imagenes/4.png";
+           }
+           if ($valor_precio >= 4.5 && $valor_precio  < 5){
+           	$imagen_precio = "imagenes/45.png";
+           }
+           if ($valor_precio == 5 ){
+           	$imagen_precio = "imagenes/5.png";
+           }
+           if ($valor_precio == "" ){
+           	$imagen_precio = "imagenes/0.png";
+           }
+           if ($valor_precio == 0 ){
+           	$imagen_precio = "imagenes/0.png";
+           }
+           //lo_recomiendas
+             if ($valor_lo_recomiendas == 0  && $valor_lo_recomiendas < 0.5){
+           	$imagen_lo_recomiendas = "imagenes/0.png";
+           }
+           if ($valor_lo_recomiendas >= 0.5 && $valor_lo_recomiendas <1){
+           	$imagen_lo_recomiendas = "imagenes/05.png";
+           }
+           if ($valor_lo_recomiendas >= 1 && $valor_lo_recomiendas < 1.5 ){
+           	$imagen_lo_recomiendas = "imagenes/1.png";
+           }
+           if ($valor_lo_recomiendas >= 1.5 && $valor_lo_recomiendas < 2 ){
+           	$imagen_lo_recomiendas = "imagenes/15.png";
+           }
+           if ($valor_lo_recomiendas >= 2 && $valor_lo_recomiendas < 2.5 ){
+           	$imagen_lo_recomiendas = "imagenes/2.png";
+           }
+           if ($valor_lo_recomiendas >= 2.5 && $valor_lo_recomiendas < 3 ){
+           	$imagen_lo_recomiendas = "imagenes/25.png";
+           }
+           if ($valor_lo_recomiendas >= 3 && $valor_lo_recomiendas <= 3.5  ){
+           	$imagen_lo_recomiendas = "imagenes/3.png";
+           }
+           if ($valor_lo_recomiendas >= 3.5 && $valor_lo_recomiendas < 4 ){
+           	$imagen_lo_recomiendas = "imagenes/35.png";
+           }
+           if ($valor_lo_recomiendas >= 4 && $valor_lo_recomiendas < 4.5 ){
+           	$imagen_lo_recomiendas = "imagenes/4.png";
+           }
+           if ($valor_lo_recomiendas >= 4.5 && $valor_lo_recomiendas  < 5){
+           	$imagen_lo_recomiendas = "imagenes/45.png";
+           }
+           if ($valor_lo_recomiendas == 5 ){
+           	$imagen_lo_recomiendas = "imagenes/5.png";
+           }
+           if ($valor_lo_recomiendas == "" ){
+           	$imagen_lo_recomiendas = "imagenes/0.png";
+           }
+           if ($valor_lo_recomiendas == 0 ){
+           	$imagen_lo_recomiendas = "imagenes/0.png";
+           }
+           }
+           ?>
+                      <div>
+           <img style="float:left" src="<?php echo $imagen_puntualidad?>" width="140" height="25"><p>PUNTUALIDAD
+           </p></div>
+                     <div>
+           <img style="float:left" src="<?php echo $imagen_instalaciones?>"width="140" height="25"><p>INSTALACIONES
+           </p></div>
+           <div>
+           <img style="float:left" src="<?php echo $imagen_atencion?>" width="140" height="25"><p>ATENCION
+           </p></div>
+           <div>
+           <img style="float:left" src="<?php echo $imagen_precio?>" width="140" height="25"><p>PRECIO
+           </p></div>
+           <div>
+           <img style="float:left" src="<?php echo $imagen_lo_recomiendas?>" width="140" height="25"><p>LO RECOMENDARIAS?
+           </p></div>
+         
+                    
+                
+                 
+                 
+           
+           
+      
          </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img class="img-circle" src="home-icon.png" alt="Generic placeholder image" width="140" height="140">
@@ -283,38 +564,252 @@ $(document).ready(function() {
           <img class="img-circle" src="satisfaction.png"  width="140" height="140">
          
         <br><br>
-          <?php //empieza loop de comentarios?>
+          <?php //empieza loop de comentarios
+          
+          $codigo = $_GET['cod'];
+          $sqlSelect = 'SELECT *
+    FROM tb_opiniones_doctor
+    WHERE codigo_verificacion = :mycodigo';
+          $sth = $conn->prepare($sqlSelect);
+          $sth->execute(array(':mycodigo' => $codigo));
+          foreach ($sth->fetchAll() as $row) {
+         
+          	$valor_puntualidad = $row['puntualidad'];
+          	$valor_instalaciones = $row['instalaciones'];
+          	$valor_atencion = $row['atencion'];
+          	$valor_precio = $row['precio'];
+          	$valor_lo_recomiendas = $row['lo_recomiendas'];
+           $mi_comentario = $row['comentarios'];
+           $mifecha = $row['fecha_opinion'];
+           $autor = $row['nombre_usuario'];
+           
+           //puntualidad
+           if ($valor_puntualidad == 0 ){
+           	$imagen_puntualidad = "imagenes/0.png";
+           }
+           if ($valor_puntualidad == 0.5 ){
+           	$imagen_puntualidad = "imagenes/05.png";
+           }
+           if ($valor_puntualidad == 1 ){
+           	$imagen_puntualidad = "imagenes/1.png";
+           }
+           if ($valor_puntualidad == 1.5 ){
+           	$imagen_puntualidad = "imagenes/15.png";
+           }
+           if ($valor_puntualidad == 2 ){
+           	$imagen_puntualidad = "imagenes/2.png";
+           }
+           if ($valor_puntualidad == 2.5 ){
+           	$imagen_puntualidad = "imagenes/25.png";
+           }
+           if ($valor_puntualidad == 3 ){
+           	$imagen_puntualidad = "imagenes/3.png";
+           }
+           if ($valor_puntualidad == 3.5 ){
+           	$imagen_puntualidad = "imagenes/35.png";
+           }
+           if ($valor_puntualidad == 4 ){
+           	$imagen_puntualidad = "imagenes/4.png";
+           }
+           if ($valor_puntualidad == 4.5 ){
+           	$imagen_puntualidad = "imagenes/45.png";
+           }
+           if ($valor_puntualidad == 5 ){
+           	$imagen_puntualidad = "imagenes/5.png";
+           }
+           if ($valor_puntualidad == "" ){
+           	$imagen_puntualidad = "imagenes/0.png";
+           }
+           if ($valor_puntualidad == 0 ){
+           	$imagen_puntualidad = "imagenes/0.png";
+           }
+           //atencion
+            
+           if ($valor_atencion == 0.5 ){
+           	$imagen_atencion = "imagenes/05.png";
+           }
+           if ($valor_atencion == 1 ){
+           	$imagen_atencion = "imagenes/1.png";
+           }
+           if ($valor_atencion == 1.5 ){
+           	$imagen_atencion = "imagenes/15.png";
+           }
+           if ($valor_atencion == 2 ){
+           	$imagen_atencion = "imagenes/2.png";
+           }
+           if ($valor_atencion == 2.5 ){
+           	$imagen_atencion = "imagenes/25.png";
+           }
+           if ($valor_atencion == 3 ){
+           	$imagen_atencion = "imagenes/3.png";
+           }
+           if ($valor_atencion == 3.5 ){
+           	$imagen_atencion = "imagenes/35.png";
+           }
+           if ($valor_atencion == 4 ){
+           	$imagen_atencion = "imagenes/4.png";
+           }
+           if ($valor_atencion == 4.5 ){
+           	$imagen_atencion = "imagenes/45.png";
+           }
+           if ($valor_atencion == 5 ){
+           	$imagen_atencion = "imagenes/5.png";
+           }
+           if ($valor_atencion == "" ){
+           	$imagen_atencion = "imagenes/0.png";
+           }
+           
+           //instalaciones
+            
+           if ($valor_instalaciones == 0.5 ){
+           	$imagen_instalaciones = "imagenes/05.png";
+           }
+           if ($valor_instalaciones == 1 ){
+           	$imagen_instalaciones = "imagenes/1.png";
+           }
+           if ($valor_instalaciones == 1.5 ){
+           	$imagen_instalaciones = "imagenes/15.png";
+           }
+           if ($valor_instalaciones == 2 ){
+           	$imagen_instalaciones = "imagenes/2.png";
+           }
+           if ($valor_instalaciones == 2.5 ){
+           	$imagen_instalaciones = "imagenes/25.png";
+           }
+           if ($valor_instalaciones == 3 ){
+           	$imagen_instalaciones = "imagenes/3.png";
+           }
+           if ($valor_instalaciones == 3.5 ){
+           	$imagen_instalaciones = "imagenes/35.png";
+           }
+           if ($valor_instalaciones == 4 ){
+           	$imagen_instalaciones = "imagenes/4.png";
+           }
+           if ($valor_instalaciones == 4.5 ){
+           	$imagen_instalaciones = "imagenes/45.png";
+           }
+           if ($valor_instalaciones == 5 ){
+           	$imagen_instalaciones = "imagenes/5.png";
+           }
+           if ($valor_instalaciones == "" ){
+           	$imagen_instalaciones = "imagenes/0.png";
+           }
+           
+           //precio
+           if ($valor_precio == 0 ){
+           	$imagen_precio = "imagenes/0.png";
+           }
+           if ($valor_precio == 0.5 ){
+           	$imagen_precio = "imagenes/05.png";
+           }
+           if ($valor_precio == 1 ){
+           	$imagen_precio = "imagenes/1.png";
+           }
+           if ($valor_precio == 1.5 ){
+           	$imagen_precio = "imagenes/15.png";
+           }
+           if ($valor_precio == 2 ){
+           	$imagen_precio = "imagenes/2.png";
+           }
+           if ($valor_precio == 2.5 ){
+           	$imagen_precio = "imagenes/25.png";
+           }
+           if ($valor_precio == 3 ){
+           	$imagen_precio = "imagenes/3.png";
+           }
+           if ($valor_precio == 3.5 ){
+           	$imagen_precio = "imagenes/35.png";
+           }
+           if ($valor_precio == 4 ){
+           	$imagen_precio = "imagenes/4.png";
+           }
+           if ($valor_precio == 4.5 ){
+           	$imagen_precio = "imagenes/45.png";
+           }
+           if ($valor_precio == 5 ){
+           	$imagen_precio = "imagenes/5.png";
+           }
+           if ($valor_precio == "" ){
+           	$imagen_precio = "imagenes/0.png";
+           }
+           if ($valor_precio == 0 ){
+           	$imagen_precio = "imagenes/0.png";
+           }
+           
+           //lo_recomiendas
+           if ($valor_lo_recomiendas == 0 ){
+           	$imagen_lo_recomiendas = "imagenes/0.png";
+           }
+           if ($valor_lo_recomiendas == 0.5 ){
+           	$imagen_lo_recomiendas = "imagenes/05.png";
+           }
+           if ($valor_lo_recomiendas == 1 ){
+           	$imagen_lo_recomiendas = "imagenes/1.png";
+           }
+           if ($valor_lo_recomiendas == 1.5 ){
+           	$imagen_lo_recomiendas = "imagenes/15.png";
+           }
+           if ($valor_lo_recomiendas == 2 ){
+           	$imagen_lo_recomiendas = "imagenes/2.png";
+           }
+           if ($valor_lo_recomiendas == 2.5 ){
+           	$imagen_lo_recomiendas = "imagenes/25.png";
+           }
+           if ($valor_lo_recomiendas == 3 ){
+           	$imagen_lo_recomiendas = "imagenes/3.png";
+           }
+           if ($valor_lo_recomiendas == 3.5 ){
+           	$imagen_lo_recomiendas = "imagenes/35.png";
+           }
+           if ($valor_lo_recomiendas == 4 ){
+           	$imagen_lo_recomiendas = "imagenes/4.png";
+           }
+           if ($valor_lo_recomiendas == 4.5 ){
+           	$imagen_lo_recomiendas = "imagenes/45.png";
+           }
+           if ($valor_lo_recomiendas == 5 ){
+           	$imagen_lo_recomiendas = "imagenes/5.png";
+           }
+           if ($valor_lo_recomiendas == "" ){
+           	$imagen_lo_recomiendas = "imagenes/0.png";
+           }
+           if ($valor_lo_recomiendas == 0 ){
+           	$imagen_lo_recomiendas = "imagenes/0.png";
+           }
+           ?>
+                      <div>
+           <img style="float:left" src="<?php echo $imagen_puntualidad?>" width="140" height="25"><p>PUNTUALIDAD
+           </p></div>
+                     <div>
+           <img style="float:left" src="<?php echo $imagen_instalaciones?>"width="140" height="25"><p>INSTALACIONES
+           </p></div>
            <div>
-<img style="float:left" src="imagenes/25.png" width="140" height="25"><p>PUNTUALIDAD
-</p></div>
-          <div>
-<img style="float:left" src="imagenes/25.png"width="140" height="25"><p>INSTALACIONES
-</p></div>
-<div>
-<img style="float:left" src="imagenes/25.png" width="140" height="25"><p>ATENCION
-</p></div>
-<div>
-<img style="float:left" src="imagenes/25.png" width="140" height="25"><p>PRECIO
-</p></div>
-<div>
-<img style="float:left" src="imagenes/25.png" width="140" height="25"><p>LO RECOMENDARIAS?
-</p></div>
-<div align="left">
-     <div id="comentario">
-     <p>Mi comentario es Donec sed odio dui. Cras justo odio, 
-     dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. 
-     Fusce dapibus, tellus ac cursus commodo, 
-     tortor mauris condimentum nibh, 
-     ut fermentum massa justo sit amet risus.</p>
-     </div>
-     <h5>2016/10/23 migayo.ssss</h5>
-        </div>
-          <p><a class="btn btn-info" href="#" role="button">Leer más</a></p>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
-      
-      
-<? php //termina loop de comentarios?>
+           <img style="float:left" src="<?php echo $imagen_atencion?>" width="140" height="25"><p>ATENCION
+           </p></div>
+           <div>
+           <img style="float:left" src="<?php echo $imagen_precio?>" width="140" height="25"><p>PRECIO
+           </p></div>
+           <div>
+           <img style="float:left" src="<?php echo $imagen_lo_recomiendas?>" width="140" height="25"><p>LO RECOMENDARIAS?
+           </p></div>
+           <div align="left">
+                <div id="comentario">
+                <p><?php echo $mi_comentario;?></p>
+                </div>
+                <h5><?php echo "Opinión publicada por ".$autor." el dia " .$mifecha.".";?></h5>
+                   </div>
+                     <p><a class="btn btn-info" href="#" role="button">Leer más</a></p>
+                
+                 
+                 
+           
+           
+        <?php }//fin foreach?>   
+          
+             </div><!-- /.col-lg-4 -->
+                 </div><!-- /.row -->
+       
+
  
 			</div>
 		</div>
