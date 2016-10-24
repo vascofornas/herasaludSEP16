@@ -30,7 +30,7 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 			OR ciudad_doctor LIKE "%'.$search_string.'%"
 			OR estado_doctor LIKE "%'.$search_string.'%"
 			OR pais_doctor LIKE "%'.$search_string.'%" 
-					AND doctor_activo = 1) ';
+					)  AND doctor_activo = 1';
 
 	//Timestamp entry of search for later display
 	$time_entry = $test_db->query($time);
